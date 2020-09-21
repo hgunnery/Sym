@@ -9,14 +9,13 @@ Feature: Manage initial setup
 
   Scenario: Register as admin
     When I go to the homepage
-    And I follow "Set Up"
     And I fill in "user_first_name" with "John"
     And I fill in "user_last_name" with "Shepard"
     And I fill in "user_email" with "john.shepard@metril.com"
     And I fill in "user_password" with "johnwins"
     And I fill in "user_password_confirmation" with "johnwins"
     And I press "Register"
-    Then I should see "Congratulations, you have completed your first step, now let's get you ready to make some money!"
+    Then I should see "Congratulations you are all set!"
 
   Scenario: Home page on app with only an admin user
     Given I have only an Admin
