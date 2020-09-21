@@ -1,4 +1,4 @@
-Feature: Manage Users
+Feature: Manage initial setup
   In order to function as a membership platforms
   As an admin
   I want to manage users
