@@ -1,1 +1,11 @@
-<h1>Welcome to the app, this is index</h1>
+<h1>Welcome to your Sym Membership app, please login</h1>
+
+
+<% @user_types = UserType.all %>
+
+<% @user_types.each do |user_type| %>
+  <tr>
+    <td><%= user_type.name %></td>
+    <td><%= user_type.id %></td>
+  </tr>
+<% end %>

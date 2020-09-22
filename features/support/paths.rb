@@ -6,6 +6,8 @@ module NavigationHelpers
     case page_name
   when /^the homepage/
       root_path
+  when /^the admin homepage/
+      admin_homepage_path
     else
       begin
         page_name =~ /^the (.*) page$/
