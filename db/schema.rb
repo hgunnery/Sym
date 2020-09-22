@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_09_21_093133) do
+ActiveRecord::Schema.define(version: 2020_09_22_123348) do
 
   create_table "user_types", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "name"
@@ -26,6 +26,10 @@ ActiveRecord::Schema.define(version: 2020_09_21_093133) do
     t.integer "user_type_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.boolean "allow_marketing"
+    t.string "auth_token"
+    t.string "password_reset_token"
+    t.datetime "password_sent_at"
   end
 
 end
