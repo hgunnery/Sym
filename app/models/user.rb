@@ -4,6 +4,7 @@ class User < ApplicationRecord
   before_create { generate_token(:auth_token) }
 
   belongs_to :user_type
+  belongs_to :supporter_level
 
   validates_presence_of :email
   validates_uniqueness_of :email
