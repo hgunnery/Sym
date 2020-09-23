@@ -1,7 +1,7 @@
 Feature: Manage initial setup
-  In order to function as a membership platforms
+  In order to function as a membership platform
   As an admin
-  I want to manage users
+  I want to go through initial registration
 
   Scenario: Fresh install works
     When I go to the homepage
@@ -19,11 +19,11 @@ Feature: Manage initial setup
     Then I should see "Congratulations you are all set!"
 
   Scenario: Home page on app with only an admin user
-    And I have only an Admin
+    And I have an Admin
     When I go to the homepage
     Then I should see "Welcome to your Sym Membership app, please login"
 
   Scenario: Logged in Admin Home page with only an admin user - no setup done
-    Given I have only an admin and they are logged in
+    Given I have an admin and they are logged in
     When I go to the admin homepage
     Then I should see "Lets get setup"

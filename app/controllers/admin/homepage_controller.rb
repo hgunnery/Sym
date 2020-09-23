@@ -2,7 +2,7 @@ class Admin::HomepageController < ApplicationController
 
   def index
     if current_user && current_user.is_admin? then
-
+      @supporter_levels = SupporterLevel.all
     else
       redirect_to root_url, :error => "Only admins allowed here!"
     end

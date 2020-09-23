@@ -1,5 +1,5 @@
-Given /^I have only an Admin$/ do
-  FactoryBot.create(:admin)
+Given /^I have an Admin$/ do
+  @admin = FactoryBot.create(:admin)
 end
 
 Given /^I have user types$/ do
@@ -10,8 +10,16 @@ Given /^I have user types$/ do
   end
 end
 
-Given('I have only an admin and they are logged in') do
+Given('I have an admin and they are logged in') do
   @admin = FactoryBot.create(:admin)
+  visit log_in_path
+  fill_in "email", :with => @admin.email
+  fill_in "password", :with => @admin.password
+  click_button "Log in"
+end
+
+
+When('I log in') do
   visit log_in_path
   fill_in "email", :with => @admin.email
   fill_in "password", :with => @admin.password

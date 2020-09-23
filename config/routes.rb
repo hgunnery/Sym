@@ -11,6 +11,7 @@ Rails.application.routes.draw do
 
   namespace :admin do
     get "homepage" => "homepage#index"
+    resources :supporter_levels
   end
   resources :password_resets
 end

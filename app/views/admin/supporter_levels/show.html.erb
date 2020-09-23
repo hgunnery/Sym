@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @supporter_level.name %>
+</p>
+
+<p>
+  <strong>Ammount:</strong>
+  <%= @supporter_level.ammount %>
+</p>
+
+<%= link_to 'Edit', edit_supporter_level_path(@supporter_level) %> |
+<%= link_to 'Back', supporter_levels_path %>
