@@ -13,7 +13,7 @@ class SessionsController < ApplicationController
       if user.is_admin? then
         redirect_to admin_homepage_path, :notice => "Logged in!"
       else
-        redirect_to root_url, :notice => "Logged in!"
+        redirect_to dashboard_path, :notice => "Logged in!"
       end
     else
       flash.now.alert = "Invalid email or password"

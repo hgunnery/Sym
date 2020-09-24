@@ -26,6 +26,11 @@
     <%= form.text_field :email %>
   </div>
 
+	<div class="field">
+    <%= form.label :supporter_level_id, "Supporter Level" %>
+    <%= form.select :supporter_level_id, SupporterLevel.all.collect {|suppoter_level| [suppoter_level.name, suppoter_level.id]}, {} %>
+  </div>
+
   <div class="field">
     <%= form.label :password %>
     <%= form.password_field :password %>
@@ -36,7 +41,12 @@
     <%= form.password_field :password_confirmation %>
   </div>
 
+	<div class="field">
+	  <%= form.label :allow_marketing %>
+	  <%= form.check_box :allow_marketing %>
+	</div>
+
   <div class="actions">
-    <%= form.submit "Register" %>
+    <%= form.submit button_name %>
   </div>
 <% end %>

@@ -26,8 +26,10 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
 
-    if User.all.empty? then
-      @user.user_type_id = 1
+    unless User.all.empty? then
+    	@user.user_type_id = 3
+		else
+			@user.user_type_id = 1
     end
 
     respond_to do |format|
@@ -46,7 +48,7 @@ class UsersController < ApplicationController
   def update
     respond_to do |format|
       if @user.update(user_params)
-        format.html { redirect_to @user, notice: 'User was successfully updated.' }
+        format.html { redirect_to dashboard_path, notice: 'Details updated' }
         format.json { render :show, status: :ok, location: @user }
       else
         format.html { render :edit }
@@ -73,6 +75,6 @@ class UsersController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def user_params
-      params.require(:user).permit(:first_name, :last_name, :email, :password, :password_confirmation)
+      params.require(:user).permit(:first_name, :last_name, :email, :password, :password_confirmation, :supporter_level_id, :allow_marketing)
     end
 end

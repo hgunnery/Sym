@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_09_23_101251) do
+ActiveRecord::Schema.define(version: 2020_09_24_092721) do
 
   create_table "supporter_levels", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "name"
@@ -37,6 +37,7 @@ ActiveRecord::Schema.define(version: 2020_09_23_101251) do
     t.string "auth_token"
     t.string "password_reset_token"
     t.datetime "password_sent_at"
+    t.integer "supporter_level_id"
   end
 
 end
