@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-  resources :users
   root :to => 'homepage#index'
   get "initial_setup" => "homepage#initial_setup"
 
@@ -9,10 +8,12 @@ Rails.application.routes.draw do
   get "log_in" => "sessions#new", :as => "log_in"
   get "sign_up" => "homepage#new", :as => "sign_up"
 	get "dashboard" => "homepage#dashboard", :as => "dashboard"
+	resources :accounts
 
   namespace :admin do
     get "homepage" => "homepage#index"
     resources :supporter_levels
+		resources :users
   end
   resources :password_resets
 end

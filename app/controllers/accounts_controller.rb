@@ -1,11 +1,6 @@
-class UsersController < ApplicationController
+class AccountsController < ApplicationController
+	before_action :require_login, only: [:edit, :update]
   before_action :set_user, only: [:show, :edit, :update, :destroy]
-
-  # GET /users
-  # GET /users.json
-  def index
-    @users = User.all
-  end
 
   # GET /users/1
   # GET /users/1.json
@@ -60,11 +55,14 @@ class UsersController < ApplicationController
   # DELETE /users/1
   # DELETE /users/1.json
   def destroy
-    @user.destroy
-    respond_to do |format|
-      format.html { redirect_to users_url, notice: 'User was successfully destroyed.' }
-      format.json { head :no_content }
-    end
+		# User destroy should do nothing at the moment
+		# # TODO: Mark user as deleted for a time and then destroy only after x days to allow for account re-activation
+    # @user.destroy
+    # respond_to do |format|
+    #   format.html { redirect_to users_url, notice: 'User was successfully destroyed.' }
+    #   format.json { head :no_content }
+    # end
+		redirect_to dashboard_path
   end
 
   private

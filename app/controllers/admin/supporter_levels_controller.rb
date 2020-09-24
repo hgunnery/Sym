@@ -1,4 +1,5 @@
 class Admin::SupporterLevelsController < ApplicationController
+	before_action :admins_only
   before_action :set_supporter_level, only: [:show, :edit, :update, :destroy]
 
   # GET /supporter_levels

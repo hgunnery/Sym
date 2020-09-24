@@ -1,3 +1,3 @@
 <h1>Welcome to your new App</h1>
 
-<%= render "users/form", user: @user, button_name: "Register" %>
+<%= render partial: "accounts/form", locals: {user: @user, url: accounts_path, button_name: "Register"} %>
