@@ -4,10 +4,10 @@ class User < ApplicationRecord
   before_create { generate_token(:auth_token) }
 
   belongs_to :user_type
-  belongs_to :supporter_level
+  belongs_to :supporter_level, optional: true
 
   validates_presence_of :email
-  validates_uniqueness_of :email
+  validates_uniqueness_of :email, case_sensitive: true
 
   def is_admin?
     self.user_type_id == 1
