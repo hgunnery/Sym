@@ -12,7 +12,7 @@ end
 
 Given('I have an admin and they are logged in') do
   @admin = FactoryBot.create(:admin)
-  visit log_in_path
+  visit root_path
   fill_in "email", :with => @admin.email
   fill_in "password", :with => @admin.password
   click_button "Log in"
@@ -20,7 +20,7 @@ end
 
 
 When('I log in') do
-  visit log_in_path
+  visit root_path
   fill_in "email", :with => @admin.email
   fill_in "password", :with => @admin.password
   click_button "Log in"
@@ -53,7 +53,7 @@ Given('I have a supporter and pre-requisites') do
 end
 
 When('I log in as a support') do
-	visit log_in_path
+	visit root_path
   fill_in "email", :with => @supporter.email
   fill_in "password", :with => @supporter.password
   click_button "Log in"
