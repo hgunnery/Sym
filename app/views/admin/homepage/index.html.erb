@@ -2,28 +2,17 @@
 
 <h2>Current Supporter Levels</h2>
 
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Ammount</th>
-			<th>Supporters at this level</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @supporter_levels.each do |supporter_level| %>
-      <tr>
-        <td><%= supporter_level.name %></td>
-        <td><%= number_to_currency(supporter_level.ammount, :unit => "£") %></td>
-				<td><%= supporter_level.users.count %></td>
-        <td><%= link_to 'Edit', edit_admin_supporter_level_path(supporter_level) %></td>
-        <td><%= link_to 'Destroy', admin_supporter_level_path(supporter_level), method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+<div class="row">
+	<% @supporter_levels.each do |supporter_level| %>
+		<div class="col-sm-4 supporter-level-containers">
+			<h3><%= supporter_level.name %> @ <%= number_to_currency(supporter_level.ammount, :unit => "£") %></h3>
+			<h4><%= supporter_level.users.count %></h4>
+			Supporters at this level
+			<br>
+			<%= link_to 'Edit', edit_admin_supporter_level_path(supporter_level) %> or <%= link_to 'Delete', admin_supporter_level_path(supporter_level), method: :delete, data: { confirm: 'Are you sure?' } %>
+		</div>
+	<% end %>
+</div>
 
 <br>
 
