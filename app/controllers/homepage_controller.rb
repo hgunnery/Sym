@@ -1,5 +1,5 @@
 class HomepageController < ApplicationController
-	before_action :require_login, only: [:dashboard]
+	before_action :require_login, only: [:dashboard, :blog]
 
 	def new
 		@user = User.new
