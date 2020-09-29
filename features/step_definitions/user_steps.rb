@@ -58,3 +58,58 @@ When('I log in as a support') do
   fill_in "password", :with => @supporter.password
   click_button "Log in"
 end
+
+When('I login as the user') do
+	visit root_path
+  fill_in "email", :with => @supporter.email
+  fill_in "password", :with => @supporter.password
+  click_button "Log in"
+end
+
+Given('I have an admin and a user and the user is logged in') do
+	unless UserType.all.count == 3 then
+    UserType.upsert(id: 1, name: "Admin", created_at: DateTime.now, updated_at: DateTime.now)
+    UserType.upsert(id: 2, name: "Supervisor", created_at: DateTime.now, updated_at: DateTime.now)
+    UserType.upsert(id: 3, name: "Supporter", created_at: DateTime.now, updated_at: DateTime.now)
+  end
+	if User.first.nil?
+		@admin = FactoryBot.create(:admin)
+	end
+	@supporter = FactoryBot.create(:supporter)
+	visit root_path
+  fill_in "email", :with => @supporter.email
+  fill_in "password", :with => @supporter.password
+  click_button "Log in"
+end
+
+Given('I have an admin and a user and the admin is logged in') do
+	unless UserType.all.count == 3 then
+    UserType.upsert(id: 1, name: "Admin", created_at: DateTime.now, updated_at: DateTime.now)
+    UserType.upsert(id: 2, name: "Supervisor", created_at: DateTime.now, updated_at: DateTime.now)
+    UserType.upsert(id: 3, name: "Supporter", created_at: DateTime.now, updated_at: DateTime.now)
+  end
+	if User.first.nil?
+		@admin = FactoryBot.create(:admin)
+	end
+	@supporter = FactoryBot.create(:supporter)
+	visit root_path
+  fill_in "email", :with => @admin.email
+  fill_in "password", :with => @admin.password
+  click_button "Log in"
+end
+
+Given('I have a supporter and they are logged in') do
+	unless UserType.all.count == 3 then
+    UserType.upsert(id: 1, name: "Admin", created_at: DateTime.now, updated_at: DateTime.now)
+    UserType.upsert(id: 2, name: "Supervisor", created_at: DateTime.now, updated_at: DateTime.now)
+    UserType.upsert(id: 3, name: "Supporter", created_at: DateTime.now, updated_at: DateTime.now)
+  end
+	if User.first.nil?
+		@admin = FactoryBot.create(:admin)
+	end
+	@supporter = FactoryBot.create(:supporter)
+	visit root_path
+  fill_in "email", :with => @admin.email
+  fill_in "password", :with => @admin.password
+  click_button "Log in"
+end

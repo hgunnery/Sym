@@ -10,7 +10,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_09_24_092721) do
+ActiveRecord::Schema.define(version: 2020_09_28_093107) do
+
+  create_table "suggestions", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.string "name"
+    t.text "description"
+    t.integer "votes", default: 1
+    t.boolean "completed", default: false
+    t.boolean "banned", default: false
+    t.text "banned_reason"
+    t.boolean "admin_suggested"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
 
   create_table "supporter_levels", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "name"

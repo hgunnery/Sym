@@ -1,0 +1,116 @@
+class SuggestionsController < ApplicationController
+	before_action :require_login
+  before_action :set_suggestion, only: [:show, :edit, :update, :destroy, :banned, :completed, :up_vote, :down_vote, :incomplete, :unban]
+
+  # GET /suggestions
+  # GET /suggestions.json
+  def index
+		# # TODO:  DRY this out
+    @suggestions_top_5 = Suggestion.where(completed: false, banned: false).order(votes: :desc).limit(5)
+		@all_suggestions = Suggestion.where(completed: false, banned: false).order(created_at: :desc)
+		@completed_suggestions = Suggestion.where(completed: true, banned: false).order(created_at: :desc)
+		@banned_suggestions  = Suggestion.where(completed: false, banned: true).order(created_at: :desc)
+  end
+
+  # GET /suggestions/1
+  # GET /suggestions/1.json
+  def show
+  end
+
+  # GET /suggestions/new
+  def new
+    @suggestion = Suggestion.new
+  end
+
+  # GET /suggestions/1/edit
+  def edit
+  end
+
+  # POST /suggestions
+  # POST /suggestions.json
+  def create
+    @suggestion = Suggestion.new(suggestion_params)
+		if current_user.is_admin? then
+			@suggestion.admin_suggested = true
+		end
+
+    respond_to do |format|
+      if @suggestion.save
+        format.html { redirect_to @suggestion, notice: 'Suggestion created' }
+        format.json { render :show, status: :created, location: @suggestion }
+      else
+        format.html { render :new }
+        format.json { render json: @suggestion.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
+  # PATCH/PUT /suggestions/1
+  # PATCH/PUT /suggestions/1.json
+  def update
+    respond_to do |format|
+      if @suggestion.update(suggestion_params)
+        format.html { redirect_to @suggestion, notice: 'Suggestion updated' }
+        format.json { render :show, status: :ok, location: @suggestion }
+      else
+        format.html { render :edit }
+        format.json { render json: @suggestion.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
+  # DELETE /suggestions/1
+  # DELETE /suggestions/1.json
+  def destroy
+    @suggestion.destroy
+    respond_to do |format|
+      format.html { redirect_to suggestions_url, notice: 'Suggestion was successfully destroyed.' }
+      format.json { head :no_content }
+    end
+  end
+
+	def completed
+		@suggestion.completed = true
+		@suggestion.save!
+		redirect_to suggestions_path, notice: "Suggestion marked as completed"
+	end
+
+	def incomplete
+		@suggestion.completed = false
+		@suggestion.save!
+		redirect_to suggestions_path, notice: "Suggestion marked as incomplete"
+	end
+
+	def up_vote
+		@suggestion.votes = @suggestion.votes + 1
+		@suggestion.save!
+		redirect_to suggestions_path, notice: "Suggestion up voted"
+	end
+
+	def down_vote
+		@suggestion.votes = @suggestion.votes - 1
+		@suggestion.save!
+		redirect_to suggestions_path, notice: "Suggestion down voted"
+	end
+
+	def banned
+	end
+
+	def unban
+		@suggestion.banned = false
+		@suggestion.banned_reason = nil
+		@suggestion.save!
+		redirect_to suggestions_path, notice: "Suggestion had been unbanned"
+	end
+
+  private
+    # Use callbacks to share common setup or constraints between actions.
+    def set_suggestion
+      @suggestion = Suggestion.find(params[:id])
+    end
+
+    # Only allow a list of trusted parameters through.
+    def suggestion_params
+      params.require(:suggestion).permit(:name, :description, :banned, :banned_reason)
+    end
+end

@@ -1,0 +1,38 @@
+<%= form_with(model: suggestion, local: true) do |form| %>
+  <% if suggestion.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(suggestion.errors.count, "error") %> prohibited this suggestion from being saved:</h2>
+
+      <ul>
+        <% suggestion.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+<div class="row">
+	<div class="col-sm-3">
+		<div class="field form-group">
+			<%= form.label :banned %>
+			<%= form.check_box :banned, checked: true %>
+		</div>
+	</div>
+</div>
+	<div class="row">
+		<div class="col-sm-3">
+			<div class="field form-group">
+		    <%= form.label :banned_reason %>
+		    <%= form.text_area :banned_reason, class: "form-control" %>
+		  </div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-sm-3">
+			<div class="actions">
+		    <%= form.submit "Ban suggestion", class: "btn btn-danger" %>
+		  </div>
+		</div>
+	</div>
+
+<% end %>

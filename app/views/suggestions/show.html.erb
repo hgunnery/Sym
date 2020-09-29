@@ -1,0 +1,40 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @suggestion.name %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @suggestion.description %>
+</p>
+
+<p>
+  <strong>Votes:</strong>
+  <%= @suggestion.votes %>
+</p>
+
+<p>
+  <strong>Completed:</strong>
+  <%= @suggestion.completed %>
+</p>
+
+<% if @suggestion.banned == true %>
+	<p>
+	  <strong>Banned:</strong>
+	  <%= @suggestion.banned %>
+	</p>
+
+	<p>
+	  <strong>Reason it is banned:</strong>
+	  <%= @suggestion.banned_reason %>
+	</p>
+<% end %>
+<p>
+  <strong>Admin suggested:</strong>
+  <%= @suggestion.admin_suggested %>
+</p>
+
+<%= link_to 'Edit', edit_suggestion_path(@suggestion) %> |
+<%= link_to 'Back', suggestions_path %>

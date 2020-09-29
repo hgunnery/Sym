@@ -1,4 +1,15 @@
 Rails.application.routes.draw do
+  resources :suggestions do
+  	member do
+			post "completed"
+			post "incomplete"
+			post "up_vote"
+			post "down_vote"
+			get "banned"
+			post "unban"
+		end
+  end
+
   root :to => 'homepage#index'
   get "initial_setup" => "homepage#initial_setup"
 
