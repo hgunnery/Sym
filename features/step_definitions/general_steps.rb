@@ -37,3 +37,11 @@ end
 When /^I uncheck "([^\"]*)"$/ do |field|
   uncheck(field)
 end
+
+Then('I should not see {string}') do |string|
+	if page.respond_to? :should
+    page.should not_have_content(string)
+  else
+    assert page.has_content?(text)
+  end
+end

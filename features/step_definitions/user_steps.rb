@@ -113,3 +113,19 @@ Given('I have a supporter and they are logged in') do
   fill_in "password", :with => @admin.password
   click_button "Log in"
 end
+
+When('I log out and log in as a supporter') do
+  visit log_out_path
+	visit root_path
+	fill_in "email", :with => @supporter.email
+  fill_in "password", :with => @supporter.password
+  click_button "Log in"
+end
+
+When('I log out and log in as an admin') do
+	visit log_out_path
+	visit root_path
+	fill_in "email", :with => @admin.email
+  fill_in "password", :with => @admin.password
+  click_button "Log in"
+end

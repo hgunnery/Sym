@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+
   resources :suggestions do
   	member do
 			post "completed"
@@ -19,12 +20,18 @@ Rails.application.routes.draw do
   get "log_in" => "sessions#new", :as => "log_in"
   get "sign_up" => "homepage#new", :as => "sign_up"
 	get "dashboard" => "homepage#dashboard", :as => "dashboard"
+	get "blog" => "homepage#blog", :as => "blog"
 	resources :accounts
 
   namespace :admin do
     get "homepage" => "homepage#index"
     resources :supporter_levels
 		resources :users
+		resources :posts do
+			member do
+				post "publish"
+			end
+		end
   end
   resources :password_resets
 end

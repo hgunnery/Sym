@@ -27,4 +27,8 @@ class HomepageController < ApplicationController
 	def dashboard
 
 	end
+
+	def blog
+		@posts = Post.where(published: true).order(published_at: :desc)
+	end
 end

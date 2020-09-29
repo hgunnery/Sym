@@ -8,6 +8,8 @@ module NavigationHelpers
       root_path
   when /^the admin homepage/
       admin_homepage_path
+	when /^the admin posts page/
+			admin_posts_path
     else
       begin
         page_name =~ /^the (.*) page$/
