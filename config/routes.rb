@@ -8,6 +8,11 @@ Rails.application.routes.draw do
 			get "banned"
 			post "unban"
 		end
+		collection do
+			get "all_completed"
+			get "all_suggested"
+			get "all_banned"
+		end
   end
 
   root :to => 'homepage#index'

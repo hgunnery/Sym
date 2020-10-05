@@ -1,0 +1,46 @@
+<% if @page_title then page_title = @page_title end %>
+<% if @suggestions then suggestions = @suggestions end %>
+<br>
+<h2><%= page_title.to_s %></h2>
+<br>
+<div>
+	<table class="table table-bordered table-striped">
+		<thead class="thead-dark">
+			<tr>
+				<th scope="col">Name</th>
+				<th scope="col">Description</th>
+				<th scope="col">Votes</th>
+				<% unless current_user.is_admin? %>
+					<th scope="col"></th>
+					<th scope="col"></th>
+				<% end %>
+				<th scope="col"></th>
+				<% if current_user.is_admin? %>
+					<th scope="col"></th>
+					<th scope="col"></th>
+					<th scope="col"></th>
+				<% end %>
+			</tr>
+		</thead>
+
+		<tbody>
+			<% suggestions.each do |suggestion| %>
+				<tr>
+					<td><%= suggestion.name %></td>
+					<td><%= truncate suggestion.description, length: 100, omission: '... (continued)' %></td>
+					<td><%= suggestion.votes %></td>
+					<% unless current_user.is_admin? %>
+						<td><%= link_to "Up Vote", up_vote_suggestion_path(suggestion), :method => :post, class: "btn btn-success" %></td>
+						<td><%= link_to "Down Vote", down_vote_suggestion_path(suggestion), :method => :post, class: "btn btn-danger" %></td>
+					<% end %>
+					<td><%= link_to "View", suggestion_path(suggestion), class: "btn btn-info" %></td>
+					<% if current_user.is_admin? %>
+						<td><%= link_to "Edit", edit_suggestion_path(suggestion), class: "btn btn-primary" %></td>
+						<td><%= link_to "Complete", completed_suggestion_path(suggestion), :method => :post, class: "btn btn-success" %></td>
+						<td><%= link_to "Ban", banned_suggestion_path(suggestion), class: "btn btn-danger" %></td>
+					<% end %>
+				</tr>
+			<% end %>
+		</tbody>
+	</table>
+</div>
