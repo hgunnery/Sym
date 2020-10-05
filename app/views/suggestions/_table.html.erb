@@ -28,10 +28,15 @@
 				<tr>
 					<td><%= suggestion.name %></td>
 					<td><%= truncate suggestion.description, length: 100, omission: '... (continued)' %></td>
-					<td><%= suggestion.votes %></td>
+					<td><%= suggestion.votes.count %> <%= (suggestion.votes.count) == 1 ? 'Vote' : 'Votes'%></td>
 					<% unless current_user.is_admin? %>
-						<td><%= link_to "Up Vote", up_vote_suggestion_path(suggestion), :method => :post, class: "btn btn-success" %></td>
-						<td><%= link_to "Down Vote", down_vote_suggestion_path(suggestion), :method => :post, class: "btn btn-danger" %></td>
+					<% pre_vote = suggestion.votes.find { |vote| vote.user_id == current_user.id} %>
+					<% if pre_vote %>
+						<td><%= link_to "Down Vote", suggestion_vote_path(suggestion, pre_vote), method: :delete, class: "btn btn-danger" %></td>
+					<% else %>
+					  <td><%= link_to "Vote", suggestion_votes_path(suggestion), :method => :post, class: "btn btn-success" %></td>
+					<% end %>
+
 					<% end %>
 					<td><%= link_to "View", suggestion_path(suggestion), class: "btn btn-info" %></td>
 					<% if current_user.is_admin? %>

@@ -5,6 +5,7 @@ class User < ApplicationRecord
 
   belongs_to :user_type
   belongs_to :supporter_level, optional: true
+	has_many :votes, dependent: :destroy
 
   validates_presence_of :email
   validates_uniqueness_of :email, case_sensitive: true

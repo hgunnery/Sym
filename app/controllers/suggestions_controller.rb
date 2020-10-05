@@ -5,7 +5,8 @@ class SuggestionsController < ApplicationController
   # GET /suggestions
   # GET /suggestions.json
   def index
-    @suggestions = Suggestion.where(completed: false, banned: false).order(votes: :desc).limit(5)
+    # @suggestions = Suggestion.where(completed: false, banned: false).order(votes: :desc).limit(5)
+		@suggestions = Suggestion.where(completed: false, banned: false).order(created_at: :desc).limit(5)
 		@page_title = "Top 5 Suggestions"
   end
 

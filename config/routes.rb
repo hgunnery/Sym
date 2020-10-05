@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   resources :suggestions do
+		resources :votes
   	member do
 			post "completed"
 			post "incomplete"
