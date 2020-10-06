@@ -1,15 +1,12 @@
 class SuggestionsController < ApplicationController
 	before_action :require_login
-  before_action :set_suggestion, only: [:show, :edit, :update, :destroy, :banned, :completed, :up_vote, :down_vote, :incomplete, :unban]
+  before_action :set_suggestion, only: [:show, :edit, :update, :destroy, :completed, :incomplete]
 
   # GET /suggestions
   # GET /suggestions.json
   def index
-		# # TODO:  DRY this out
-    @suggestions_top_5 = Suggestion.where(completed: false, banned: false).order(votes: :desc).limit(5)
-		@all_suggestions = Suggestion.where(completed: false, banned: false).order(created_at: :desc)
-		@completed_suggestions = Suggestion.where(completed: true, banned: false).order(created_at: :desc)
-		@banned_suggestions  = Suggestion.where(completed: false, banned: true).order(created_at: :desc)
+		@suggestions = Suggestion.where(completed: false, banned: false).order(vote_count: :desc).limit(5)
+		@page_title = "Top 5 Suggestions"
   end
 
   # GET /suggestions/1
@@ -30,6 +27,7 @@ class SuggestionsController < ApplicationController
   # POST /suggestions.json
   def create
     @suggestion = Suggestion.new(suggestion_params)
+		@suggestion.user = current_user
 		if current_user.is_admin? then
 			@suggestion.admin_suggested = true
 		end
@@ -81,26 +79,28 @@ class SuggestionsController < ApplicationController
 		redirect_to suggestions_path, notice: "Suggestion marked as incomplete"
 	end
 
-	def up_vote
-		@suggestion.votes = @suggestion.votes + 1
-		@suggestion.save!
-		redirect_to suggestions_path, notice: "Suggestion up voted"
+	def all_banned
+		@suggestions = Suggestion.where(completed: false, banned: true).order(created_at: :desc)
+		@page_title = "Banned Suggestions"
+		respond_to do |format|
+        format.js
+    end
 	end
 
-	def down_vote
-		@suggestion.votes = @suggestion.votes - 1
-		@suggestion.save!
-		redirect_to suggestions_path, notice: "Suggestion down voted"
+	def all_completed
+		@suggestions = Suggestion.where(completed: true, banned: false).order(created_at: :desc)
+		@page_title = "All Completed Suggestions"
+		respond_to do |format|
+        format.js
+    end
 	end
 
-	def banned
-	end
-
-	def unban
-		@suggestion.banned = false
-		@suggestion.banned_reason = nil
-		@suggestion.save!
-		redirect_to suggestions_path, notice: "Suggestion had been unbanned"
+	def all_suggested
+		@suggestions = Suggestion.where(completed: false, banned: false).order(created_at: :desc)
+		@page_title = "All Suggestions"
+		respond_to do |format|
+        format.js
+    end
 	end
 
   private

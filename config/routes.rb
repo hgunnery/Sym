@@ -1,13 +1,15 @@
 Rails.application.routes.draw do
 
   resources :suggestions do
+		resources :votes
   	member do
 			post "completed"
 			post "incomplete"
-			post "up_vote"
-			post "down_vote"
-			get "banned"
-			post "unban"
+		end
+		collection do
+			get "all_completed"
+			get "all_suggested"
+			get "all_banned"
 		end
   end
 

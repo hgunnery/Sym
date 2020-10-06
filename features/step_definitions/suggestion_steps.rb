@@ -1,5 +1,5 @@
 Given('I have a suggestion created by an Admin') do
-  @admin_suggestion = FactoryBot.create(:suggestion)
+  @admin_suggestion = FactoryBot.create(:suggestion, user: @admin)
 	@admin_suggestion.admin_suggested = true
 	@admin_suggestion.save!
 end
