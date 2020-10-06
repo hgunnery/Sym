@@ -7,6 +7,8 @@ class VotesController < ApplicationController
 			flash[:notice] = "You can't vote more than once"
 		else
 			@suggestion.votes.create(user_id: current_user.id)
+			@suggestion.vote_count = @suggestion.vote_count + 1
+			@suggestion.save!
 		end
     redirect_to suggestions_path
   end
@@ -16,6 +18,8 @@ class VotesController < ApplicationController
 	    flash[:notice] = "Cannot remove vote"
 	  else
 	    @vote.destroy
+			@suggestion.vote_count = @suggestion.vote_count - 1
+			@suggestion.save!
 	  end
 		redirect_back(fallback_location: suggestions_path)
 	end

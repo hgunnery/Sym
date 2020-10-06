@@ -4,10 +4,6 @@ Rails.application.routes.draw do
   	member do
 			post "completed"
 			post "incomplete"
-			post "up_vote"
-			post "down_vote"
-			get "banned"
-			post "unban"
 		end
 		collection do
 			get "all_completed"

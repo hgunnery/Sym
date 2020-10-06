@@ -1,12 +1,11 @@
 class SuggestionsController < ApplicationController
 	before_action :require_login
-  before_action :set_suggestion, only: [:show, :edit, :update, :destroy, :banned, :completed, :up_vote, :down_vote, :incomplete, :unban]
+  before_action :set_suggestion, only: [:show, :edit, :update, :destroy, :completed, :incomplete]
 
   # GET /suggestions
   # GET /suggestions.json
   def index
-    # @suggestions = Suggestion.where(completed: false, banned: false).order(votes: :desc).limit(5)
-		@suggestions = Suggestion.where(completed: false, banned: false).order(created_at: :desc).limit(5)
+		@suggestions = Suggestion.where(completed: false, banned: false).order(vote_count: :desc).limit(5)
 		@page_title = "Top 5 Suggestions"
   end
 
@@ -28,6 +27,7 @@ class SuggestionsController < ApplicationController
   # POST /suggestions.json
   def create
     @suggestion = Suggestion.new(suggestion_params)
+		@suggestion.user = current_user
 		if current_user.is_admin? then
 			@suggestion.admin_suggested = true
 		end
@@ -77,28 +77,6 @@ class SuggestionsController < ApplicationController
 		@suggestion.completed = false
 		@suggestion.save!
 		redirect_to suggestions_path, notice: "Suggestion marked as incomplete"
-	end
-
-	def up_vote
-		@suggestion.votes = @suggestion.votes + 1
-		@suggestion.save!
-		redirect_to suggestions_path, notice: "Suggestion up voted"
-	end
-
-	def down_vote
-		@suggestion.votes = @suggestion.votes - 1
-		@suggestion.save!
-		redirect_to suggestions_path, notice: "Suggestion down voted"
-	end
-
-	def banned
-	end
-
-	def unban
-		@suggestion.banned = false
-		@suggestion.banned_reason = nil
-		@suggestion.save!
-		redirect_to suggestions_path, notice: "Suggestion had been unbanned"
 	end
 
 	def all_banned

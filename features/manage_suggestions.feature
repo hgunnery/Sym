@@ -36,14 +36,11 @@ Feature: Suggestions can be created and maintained
 		And I go to the suggestions page
 		Then I should see the Admin created suggestions name
 
-	Scenario: As an admin I can ban a suggestion and a user can see it as banned
+	Scenario: As an admin I can ban a suggestion
 		Given I have an admin and a user and the admin is logged in
 		And I have a suggestion created by an Admin
 		When I edit that suggestion
 		And I check "Banned"
 		And I fill in "Banned reason" with "This is outside of my scope of work"
-		And I press "Ban suggestion"
-		And I follow "Log out"
-		And I login as the user
-		And I go to the suggestions page
-		Then I should see the Admin created suggestions name
+		And I press "Update Suggestion"
+		Then I should see "Suggestion updated"
