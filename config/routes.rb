@@ -27,6 +27,7 @@ Rails.application.routes.draw do
 
   namespace :admin do
     get "homepage" => "homepage#index"
+		resources :cores
     resources :supporter_levels
 		resources :users
 		resources :posts do

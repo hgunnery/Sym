@@ -12,6 +12,19 @@
 
   <body>
 		<%= render 'layouts/navbar' %>
+		<% if current_page?(root_path) then %>
+			<div class="row" id="banner_background">
+				<div class="container">
+					<img src="/assets/banner.png" class="img-fluid" id="banner_image">
+				</div>
+			</div>
+			<div class="container">
+				<div>
+					<img src="/assets/avatar.png" class="img-fluid" id="avatar_image">
+				</div>
+			</div>
+
+		<% end %>
 		<div class="container">
 
 	    <% flash.each do |name, msg| %>

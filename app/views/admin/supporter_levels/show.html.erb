@@ -1,14 +1,10 @@
-<p id="notice"><%= notice %></p>
-
-<p>
-  <strong>Name:</strong>
-  <%= @supporter_level.name %>
-</p>
-
-<p>
-  <strong>Ammount:</strong>
-  <%= @supporter_level.ammount %>
-</p>
-
-<%= link_to 'Edit', edit_supporter_level_path(@supporter_level) %> |
-<%= link_to 'Back', supporter_levels_path %>
+<br>
+<div class="row">
+	<div class="col-sm-4 supporter-level-containers">
+		<h3><%= @supporter_level.name %> @ <%= number_to_currency(@supporter_level.ammount, :unit => "£") %></h3>
+		<h4><%= @supporter_level.users.count %></h4>
+		Supporters at this level
+		<br>
+		<%= link_to 'Edit', edit_admin_supporter_level_path(@supporter_level) %> or <%= link_to 'Back', :back %>
+	</div>
+</div>

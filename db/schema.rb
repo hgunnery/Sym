@@ -10,7 +10,25 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_10_06_101301) do
+ActiveRecord::Schema.define(version: 2020_10_07_132057) do
+
+  create_table "cores", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.string "homepage_title"
+    t.text "homepage_content"
+    t.string "homepage_banner"
+    t.text "homepage_about"
+    t.string "homepage_avatar"
+    t.boolean "sm_youtube", default: false
+    t.boolean "sm_twitter", default: false
+    t.boolean "sm_facebook", default: false
+    t.boolean "sm_instagram", default: false
+    t.string "sm_youtube_link"
+    t.string "sm_twitter_link"
+    t.string "sm_facebook_link"
+    t.string "sm_instagram_link"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
 
   create_table "posts", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "title"
@@ -56,6 +74,7 @@ ActiveRecord::Schema.define(version: 2020_10_06_101301) do
     t.decimal "ammount", precision: 6, scale: 2
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.text "description"
   end
 
   create_table "user_types", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|

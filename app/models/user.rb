@@ -7,9 +7,10 @@ class User < ApplicationRecord
   belongs_to :supporter_level, optional: true
 	has_many :votes, dependent: :destroy
 	has_many :suggestions
-	
-  validates_presence_of :email
-  validates_uniqueness_of :email, case_sensitive: true
+
+  validates :first_name, :last_name, :password, :password_confirmation, :email, presence: true
+  validates :email, uniqueness: { case_sensitive: true }
+	validates :supporter_level, presence: true, if: :is_supporter?
 
   def is_admin?
     self.user_type_id == 1

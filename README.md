@@ -22,3 +22,8 @@ Things you may want to cover:
 * Deployment instructions
 
 * ...
+
+
+Attributions:
+
+Instagram icon: Dave Gandy / OFL (http://scripts.sil.org/cms/scripts/page.php?item_id=OFL_web)

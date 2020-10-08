@@ -6,7 +6,9 @@ class HomepageController < ApplicationController
 	end
 
   def index
+		@content = Core.find(1)
     #simple check to make sure that there are users otherwise re-direct to initial_setup
+		@supporter_levels = SupporterLevel.all
     if User.first.nil? then
       redirect_to initial_setup_path
     end
