@@ -33,6 +33,17 @@
 	</div>
 
 	<div class="row">
+		<div class="col-sm-3">
+			<%= form.label :banner %>
+			<%= form.file_field :banner %>
+		</div>
+		<div class="col-sm-3">
+			<%= form.label :avatar %>
+			<%= form.file_field :avatar %>
+		</div>
+	</div>
+<br>
+	<div class="row">
 		<div class="col-sm-3 form-group">
 	    <%= form.label :sm_youtube_link, "Enter your YouTube link" %>
 	    <%= form.text_field :sm_youtube_link, class: "form-control" %>
@@ -79,7 +90,7 @@
 	<div class="row">
 	  <div class="col-sm-6">
 	    <%= form.submit class: "btn btn-primary" %>
-			<%= link_to 'Show', admin_core_path(@core), class: "btn btn-secondary" %> 
+			<%= link_to 'Show', admin_core_path(@core), class: "btn btn-secondary" %>
 			<%= link_to 'Back', :back, class: "btn btn-link" %>
 	  </div>
 	</div>

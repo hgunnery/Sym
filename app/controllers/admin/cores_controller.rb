@@ -51,6 +51,6 @@ class Admin::CoresController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def core_params
-      params.require(:core).permit(:homepage_title, :homepage_content, :homepage_banner, :homepage_about, :homepage_avatar, :sm_youtube, :sm_twitter, :sm_facebook, :sm_instagram, :sm_youtube_link, :sm_twitter_link, :sm_facebook_link, :sm_instagram_link)
+      params.require(:core).permit(:homepage_title, :homepage_content, :banner, :homepage_about, :avatar, :sm_youtube, :sm_twitter, :sm_facebook, :sm_instagram, :sm_youtube_link, :sm_twitter_link, :sm_facebook_link, :sm_instagram_link)
     end
 end

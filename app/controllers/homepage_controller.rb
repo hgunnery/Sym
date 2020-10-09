@@ -6,9 +6,7 @@ class HomepageController < ApplicationController
 	end
 
   def index
-		@content = Core.find(1)
     #simple check to make sure that there are users otherwise re-direct to initial_setup
-		@supporter_levels = SupporterLevel.all
     if User.first.nil? then
       redirect_to initial_setup_path
     end
@@ -19,6 +17,16 @@ class HomepageController < ApplicationController
 		else
 			#currently do nothing
 		end
+		@content = Core.find(1)
+		if @content.avatar.attached? == false then
+			path = "#{Rails.root}/app/assets/images/avatar.png"
+			@content.avatar.attach(io: File.open(path), filename: 'avatar.png')
+		end
+		if @content.banner.attached? == false then
+			path = "#{Rails.root}/app/assets/images/banner.png"
+			@content.banner.attach(io: File.open(path), filename: 'banner.png')
+		end
+		@supporter_levels = SupporterLevel.all
   end
 
   def initial_setup
