@@ -72,7 +72,7 @@ class Admin::PostsController < ApplicationController
 			@post.published = false
 			@post.published_at = nil
 			@post.save!
-			redirect_to admin_posts_path, error: "Post has not been published"
+			redirect_to admin_posts_path, alert: "Post is not publically visible"
 		end
 	end
 

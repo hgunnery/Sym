@@ -18,11 +18,12 @@
 <div class="row">
 	<% @supporter_level.rewards.each do |reward| %>
 		<% if reward.content_type == "video/mp4" then %>
-			<div class="col-sm-6">
+			<div class="col-sm-6 frame">
 				<%= video_tag(url_for(reward), :controls => true, class: "reward-image") %>
 			</div>
 		<% elsif reward.content_type == "image/png" || "image/jpg" then %>
-			<div class="col-sm-6">
+			<div class="col-sm-6 frame">
+				<span class="helper"></span>
 				<%= image_tag reward, class: "reward-image" %>
 			</div>
 		<% end %>
