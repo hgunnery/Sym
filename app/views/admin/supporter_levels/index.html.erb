@@ -1,4 +1,10 @@
+<br>
 <h2>Supporter Levels</h2>
+<div class="row">
+	<div class="col-sm-12">
+		Please use these screens to create and edit your supporter levels including setting the base rate for the supporter level. You can then use the rewards screens to bulk upload rewards to multiple supporter levels. If on the other hand you just want to add rewards to one supporter level you can do that below.
+	</div>
+</div>
 
 <div class="row">
 	<% @supporter_levels.each do |supporter_level| %>
@@ -7,7 +13,8 @@
 			<h4><%= supporter_level.users.count %></h4>
 			Supporters at this level
 			<br>
-			<%= link_to 'Edit', edit_admin_supporter_level_path(supporter_level) %> or <%= link_to 'Delete', admin_supporter_level_path(supporter_level), method: :delete, data: { confirm: 'Are you sure?' } %>
+			<%= link_to 'Edit', edit_admin_supporter_level_path(supporter_level) %> | <%= link_to "Add rewards", rewards_admin_supporter_level_path(supporter_level) %>
+			<br>
 		</div>
 	<% end %>
 </div>

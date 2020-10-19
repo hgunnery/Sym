@@ -1,6 +1,6 @@
 class Admin::SupporterLevelsController < ApplicationController
 	before_action :admins_only
-  before_action :set_supporter_level, only: [:show, :edit, :update, :destroy]
+  before_action :set_supporter_level, only: [:show, :edit, :update, :destroy, :rewards]
 
   # GET /supporter_levels
   # GET /supporter_levels.json
@@ -41,15 +41,28 @@ class Admin::SupporterLevelsController < ApplicationController
   # PATCH/PUT /supporter_levels/1
   # PATCH/PUT /supporter_levels/1.json
   def update
-    respond_to do |format|
-      if @supporter_level.update(supporter_level_params)
-        format.html { redirect_to @supporter_level, notice: 'Supporter level was successfully updated.' }
-        format.json { render :show, status: :ok, location: @supporter_level }
-      else
-        format.html { render :edit }
-        format.json { render json: @supporter_level.errors, status: :unprocessable_entity }
-      end
-    end
+		# Stopped here, need to update params to handle rewards properly.
+		if @supporter_level.update(supporter_level_params)
+	    if params[:supporter_level][:rewards].present?
+	      params[:supporter_level][:rewards].each do |reward|
+	        @supporter_level.rewards.attach(reward)
+	      end
+	    end
+	    flash[:success] = 'Updated!'
+			redirect_to admin_supporter_level_path(@supporter_level)
+	  else
+	    flash[:error] = 'Not updated'
+	    redirect_to admin_supporter_level_path(@supporter_level)
+	  end
+    # respond_to do |format|
+    #   if @supporter_level.update(supporter_level_params)
+    #     format.html { redirect_to @supporter_level, notice: 'Supporter level was successfully updated.' }
+    #     format.json { render :show, status: :ok, location: @supporter_level }
+    #   else
+    #     format.html { render :edit }
+    #     format.json { render json: @supporter_level.errors, status: :unprocessable_entity }
+    #   end
+    # end
   end
 
   # DELETE /supporter_levels/1
@@ -62,6 +75,10 @@ class Admin::SupporterLevelsController < ApplicationController
     end
   end
 
+	def rewards
+
+	end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_supporter_level
@@ -70,6 +87,6 @@ class Admin::SupporterLevelsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def supporter_level_params
-      params.require(:supporter_level).permit(:name, :ammount, :description, rewards: [])
+      params.require(:supporter_level).permit(:name, :ammount, :description)
     end
 end

@@ -1,0 +1,45 @@
+<br>
+<div class="row">
+	<div class="col-sm-12">
+		<h2>Add new rewards</h2>
+	</div>
+	<div class="col-sm-12">
+		<p>
+			Please add your rewards below. User the uploader to add your files and then select the supporter levels that you would like to be able to access them. Hold Ctrl to select multiple supporter levels!
+		</p>
+		<p>
+			The app is currently only accepting videos as mp4 files and images as jpg or png files.
+		</p>
+	</div>
+</div>
+<br>
+<%= form_with(url: admin_rewards_path, scope: :post, local: true) do |form| %>
+<div class="row">
+	<div class="col-sm-6">
+		<div class="input-group mb-3">
+			<div class="input-group-prepend">
+				<span class="input-group-text" id="inputGroupFileAddon01">Upload Reward</span>
+			</div>
+			<div class="custom-file">
+				<%= form.file_field :rewards, multiple: true, class: "custom-file-input", id: "inputGroupFile01" %>
+				<label class="custom-file-label" for="inputGroupFile01">Choose files</label>
+			</div>
+		</div>
+	</div>
+</div>
+	<div class="row">
+		<div class="col-sm-3">
+			<div class="field form-group">
+				<%= form.label :supporter_level_id, "Supporter Level" %>
+		    <%= form.select :supporter_level_id, SupporterLevel.all.collect {|suppoter_level| [suppoter_level.name, suppoter_level.id]}, {}, {class: "form-control", multiple: true} %>
+		  </div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-sm-3">
+			<div class="actions">
+		    <%= form.submit "Add rewards", class: "btn btn-primary" %>
+		  </div>
+		</div>
+	</div>
+<% end %>

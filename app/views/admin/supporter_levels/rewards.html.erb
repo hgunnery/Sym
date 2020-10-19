@@ -1,0 +1,47 @@
+<br>
+<h2>Add rewards to <%= @supporter_level.name %></h2>
+<p>
+Use the uploader below to add rewards to just this supporter level. Remember if you want to add rewards to multiple groups then you can do so by following the rewards link in the navbar!
+</p>
+
+<p>
+The app is currently only accepting videos as mp4 files and images as jpg or png files.
+</p>
+
+
+<%= form_with(model: [:admin, @supporter_level]) do |form| %>
+  <% if @supporter_level.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@supporter_level.errors.count, "error") %> prohibited this supporter_level from being saved:</h2>
+
+      <ul>
+        <% @supporter_level.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+<div class="row">
+	<div class="col-sm-6">
+		<div class="input-group mb-3">
+		  <div class="input-group-prepend">
+		    <span class="input-group-text" id="inputGroupFileAddon01">Upload Reward</span>
+		  </div>
+		  <div class="custom-file">
+				<%= form.file_field :rewards, multiple: true, class: "custom-file-input", id: "inputGroupFile01" %>
+		    <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
+		  </div>
+		</div>
+	</div>
+</div>
+<div class="row">
+	<div class="col-sm-3">
+		<div class="actions">
+	    <%= form.submit "Add Rewards", class: "btn btn-primary" %>
+	  </div>
+	</div>
+</div>
+<br>
+<%= link_to 'Show', admin_supporter_level_path(@supporter_level) %> | <%= link_to "Back", :back %>
+<% end %>

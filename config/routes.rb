@@ -28,7 +28,12 @@ Rails.application.routes.draw do
   namespace :admin do
     get "homepage" => "homepage#index"
 		resources :cores
-    resources :supporter_levels
+		resources :rewards
+    resources :supporter_levels do
+    	member do
+    		get "rewards"
+    	end
+    end
 		resources :users
 		resources :posts do
 			member do

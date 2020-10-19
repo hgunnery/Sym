@@ -5,7 +5,7 @@
 		<h4><%= @supporter_level.users.count %></h4>
 		Supporters at this level
 		<br>
-		<%= link_to 'Edit', edit_admin_supporter_level_path(@supporter_level) %> or <%= link_to 'Back', :back %>
+		<%= link_to 'Edit', edit_admin_supporter_level_path(@supporter_level) %> | <%= link_to 'Back', :back %> | <%= link_to "Add rewards", rewards_admin_supporter_level_path(@supporter_level) %>
 	</div>
 </div>
 <br>

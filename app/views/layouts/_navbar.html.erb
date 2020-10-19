@@ -31,9 +31,11 @@
 	          Admin links
 	        </a>
 	        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+						<%= link_to "Supporter Levels", admin_supporter_levels_path, class: "dropdown-item" %>
 	          <%= link_to "Suggestions", suggestions_path, class: "dropdown-item" %>
 	          <%= link_to "Blog", admin_posts_path, class: "dropdown-item" %>
 						<%= link_to "App maintenance", admin_core_path(1), class: "dropdown-item" %>
+						<%= link_to "Rewards", admin_rewards_path, class: "dropdown-item" %>
 	        </div>
 	      </li>
 				<% end %>
