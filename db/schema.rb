@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_10_08_155413) do
+ActiveRecord::Schema.define(version: 2020_10_23_082500) do
 
   create_table "active_storage_attachments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "name", null: false
@@ -75,6 +75,20 @@ ActiveRecord::Schema.define(version: 2020_10_08_155413) do
     t.index ["name"], name: "index_rooms_on_name", unique: true
   end
 
+  create_table "subscriptions", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "supporter_level_id"
+    t.integer "status", default: 0
+    t.string "token"
+    t.decimal "price", precision: 6, scale: 2
+    t.integer "payment_gateway"
+    t.string "customer_id"
+    t.string "charge_id"
+    t.string "error_message"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "suggestions", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "name"
     t.text "description"
@@ -94,6 +108,8 @@ ActiveRecord::Schema.define(version: 2020_10_08_155413) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.text "description"
+    t.string "stripe_plan_name"
+    t.string "paypal_plan_name"
   end
 
   create_table "user_types", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|

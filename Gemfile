@@ -27,6 +27,9 @@ gem 'image_processing', '~> 1.2'
 # For video analysis
 gem 'mini_magick'
 
+# Payment gems
+gem 'stripe-rails'
+
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.2', require: false
 

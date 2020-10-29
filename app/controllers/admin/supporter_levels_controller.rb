@@ -41,7 +41,6 @@ class Admin::SupporterLevelsController < ApplicationController
   # PATCH/PUT /supporter_levels/1
   # PATCH/PUT /supporter_levels/1.json
   def update
-		# Stopped here, need to update params to handle rewards properly.
 		if @supporter_level.update(supporter_level_params)
 	    if params[:supporter_level][:rewards].present?
 	      params[:supporter_level][:rewards].each do |reward|
@@ -54,15 +53,6 @@ class Admin::SupporterLevelsController < ApplicationController
 	    flash[:error] = 'Not updated'
 	    redirect_to admin_supporter_level_path(@supporter_level)
 	  end
-    # respond_to do |format|
-    #   if @supporter_level.update(supporter_level_params)
-    #     format.html { redirect_to @supporter_level, notice: 'Supporter level was successfully updated.' }
-    #     format.json { render :show, status: :ok, location: @supporter_level }
-    #   else
-    #     format.html { render :edit }
-    #     format.json { render json: @supporter_level.errors, status: :unprocessable_entity }
-    #   end
-    # end
   end
 
   # DELETE /supporter_levels/1
@@ -87,6 +77,6 @@ class Admin::SupporterLevelsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def supporter_level_params
-      params.require(:supporter_level).permit(:name, :ammount, :description)
+      params.require(:supporter_level).permit(:name, :ammount, :description, :stripe_plan_name, :paypal_plan_name)
     end
 end

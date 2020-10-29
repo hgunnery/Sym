@@ -29,7 +29,7 @@ class AccountsController < ApplicationController
 
     respond_to do |format|
       if @user.save
-        format.html { redirect_to root_path, notice: 'Congratulations you are all set!' }
+        format.html { redirect_to new_subscription_path(user_id: @user.id), notice: 'Congratulations you are all set, now we just need to setup your payments!' }
         format.json { render :show, status: :created, location: @user }
       else
         format.html { render :new }

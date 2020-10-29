@@ -46,6 +46,7 @@
 	position: relative;
 	border: 2px solid white;
 	filter: grayscale(100%);
+	z-index: 100;
 }
 
 .social_callout {
@@ -178,4 +179,14 @@
   padding: 20px;
   background: #FFD39B;
   color: #FF9912;
+}
+
+#card-element {
+	width:500px;
+}
+.paymentSelectionTab {
+	display: none;
+}
+.paymentSelectionTab.active {
+	display: block !important;
 }
