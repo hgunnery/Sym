@@ -29,8 +29,13 @@ class AccountsController < ApplicationController
 
     respond_to do |format|
       if @user.save
-        format.html { redirect_to new_subscription_path(user_id: @user.id), notice: 'Congratulations you are all set, now we just need to setup your payments!' }
-        format.json { render :show, status: :created, location: @user }
+				if @user.user_type_id == 1 then
+					format.html { redirect_to root_path, notice: 'Congratulations you are all set!' }
+					format.json { render :show, status: :created, location: @user }
+				else
+					format.html { redirect_to new_subscription_path(user_id: @user.id), notice: 'Congratulations you are all set, now we just need to setup your payments!' }
+	        format.json { render :show, status: :created, location: @user }
+				end
       else
         format.html { render :new }
         format.json { render json: @user.errors, status: :unprocessable_entity }

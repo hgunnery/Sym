@@ -8,9 +8,20 @@ class User < ApplicationRecord
 	has_many :votes, dependent: :destroy
 	has_many :suggestions
 
-  validates :first_name, :last_name, :password, :password_confirmation, :email, presence: true
+  validates :first_name, :last_name, :email, presence: true
   validates :email, uniqueness: { case_sensitive: true }
 	validates :supporter_level, presence: true, if: :is_supporter?
+
+	validates :password, presence: true, if: :should_validate_password?
+	validates :password_confirmation, presence: true, if: :should_validate_password_confirmation?
+
+	def should_validate_password?
+    new_record? || password.present?
+  end
+
+	def should_validate_password_confirmation?
+    new_record? || password.present?
+  end
 
   def is_admin?
     self.user_type_id == 1
