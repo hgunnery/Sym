@@ -9,11 +9,11 @@ class ApplicationController < ActionController::Base
 
 	# Setting stripe and paypal codes to ba accessible via a variaple so that the presense can be checked (shorthand) across the app easily to stop code running when it doesnt need to
 	def stripe_codes
-		@stripe_codes = Rails.application.credentials.stripe if Rails.application.credentials.stripe
+		@stripe_codes ||= Rails.application.credentials.stripe if Rails.application.credentials.stripe
 	end
 
 	def paypal_codes
-		@paypal_codes = Rails.application.credentials.paypal if Rails.application.credentials.paypal
+		@paypal_codes ||= Rails.application.credentials.paypal if Rails.application.credentials.paypal
 	end
 
 	def require_login
