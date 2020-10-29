@@ -11,13 +11,23 @@
       </ul>
     </div>
   <% end %>
-  <div class="field">
-    <%= f.label :password %>
-    <%= f.password_field :password %>
-  </div>
-  <div class="field">
-    <%= f.label :password_confirmation %>
-    <%= f.password_field :password_confirmation %>
-  </div>
-  <div class="actions"><%= f.submit "Update Password" %></div>
+	<div class="row">
+		<div class="col-sm-3">
+			<div class="field form-group">
+		    <%= f.label :password %>
+		    <%= f.password_field :password, class: "form-control" %>
+		  </div>
+		</div>
+		<div class="col-sm-3">
+			<div class="field form-group">
+		    <%= f.label :password_confirmation %>
+		    <%= f.password_field :password_confirmation, class: "form-control" %>
+		  </div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-sm-3">
+			<div class="actions"><%= f.submit "Update Password", class: "btn btn-primary" %></div>
+		</div>
+	</div>
 <% end %>

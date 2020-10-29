@@ -1,0 +1,17 @@
+<h2>Welcome to the Blog</h2>
+
+<% @posts.each do |post| %>
+	<div class="row">
+		<div class="col">
+			<h3><%= post.title %></h3>
+		</div>
+		<div class="col align-self-end text-right">
+			Published on <%= post.published_at.strftime("%d/%m/%Y") %>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-sm-12">
+			<%= simple_format(post.content) %>
+		</div>
+	</div>
+<% end %>

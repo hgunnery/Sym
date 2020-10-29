@@ -1,0 +1,7 @@
+<h2>New User</h2>
+
+<%= render partial: "form", locals: {user: @user, url: admin_users_path, button_name: "Register"} %>
+
+<br>
+
+<%= link_to 'Back', admin_users_path %>

@@ -1,16 +1,7 @@
 class Admin::HomepageController < ApplicationController
+	before_action :admins_only
 
   def index
-    if current_user && current_user.is_admin? then
-      @supporter_levels = SupporterLevel.all
-    else
-      redirect_to root_url, :error => "Only admins allowed here!"
-    end
-  end
-
-  def initial_setup
-    ## TODO: move into seperate controller?
-    @user = User.new
-    @user.user_type_id = 1
+    @supporter_levels = SupporterLevel.all
   end
 end

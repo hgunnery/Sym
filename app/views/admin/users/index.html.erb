@@ -1,0 +1,31 @@
+<h2>Users</h2>
+
+<table class="table table-bordered table-striped">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">First name</th>
+      <th scope="col">Last name</th>
+      <th scope="col">Email</th>
+      <th scope="col">User type</th>
+			<th scope="col">Supporter level</th>
+      <th scope="col"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @users.each do |user| %>
+      <tr>
+        <td><%= user.first_name %></td>
+        <td><%= user.last_name %></td>
+        <td><%= user.email %></td>
+        <td><%= user.user_type.name %></td>
+				<td><%= if user.supporter_level then user.supporter_level.name end %></td>
+        <td><%= link_to 'Edit', edit_admin_user_path(user), class: "btn btn-primary" %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New User', new_admin_user_path %>

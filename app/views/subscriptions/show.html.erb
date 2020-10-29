@@ -1,0 +1,49 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>User:</strong>
+  <%= @subscription.user_id %>
+</p>
+
+<p>
+  <strong>Supporter level:</strong>
+  <%= @subscription.supporter_level_id %>
+</p>
+
+<p>
+  <strong>Status:</strong>
+  <%= @subscription.status %>
+</p>
+
+<p>
+  <strong>Token:</strong>
+  <%= @subscription.token %>
+</p>
+
+<p>
+  <strong>Price:</strong>
+  <%= @subscription.price %>
+</p>
+
+<p>
+  <strong>Payment gateway:</strong>
+  <%= @subscription.payment_gateway %>
+</p>
+
+<p>
+  <strong>Customer:</strong>
+  <%= @subscription.customer_id %>
+</p>
+
+<p>
+  <strong>Charge:</strong>
+  <%= @subscription.charge_id %>
+</p>
+
+<p>
+  <strong>Error message:</strong>
+  <%= @subscription.error_message %>
+</p>
+
+<%= link_to 'Edit', edit_subscription_path(@subscription) %> |
+<%= link_to 'Back', subscriptions_path %>

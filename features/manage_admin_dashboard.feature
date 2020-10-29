@@ -19,6 +19,7 @@ Feature: Manage Admin Functionality
     And I follow "New Supporter Level"
     And I fill in "supporter_level_name" with "Bronze"
     And I fill in "supporter_level_ammount" with "5.00"
+		And I fill in "supporter_level_description" with "My awesome supporter level"
     And I press "Create Supporter level"
     Then I should see "Supporter level was successfully created."
 

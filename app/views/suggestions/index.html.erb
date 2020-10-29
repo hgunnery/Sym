@@ -1,0 +1,16 @@
+<nav>
+  <div class="nav nav-tabs" id="nav-tab" role="tablist">
+		<%= link_to "Top 5 Suggestions", suggestions_path, class: "nav-link", id: "nav-top-5-tab", :remote => true %>
+		<%= link_to "All Suggestions", all_suggested_suggestions_path, class: "nav-link", id: "nav-all-tab", :remote => true %>
+		<%= link_to "All Completed", all_completed_suggestions_path, class: "nav-link", id: "nav-completed-tab", :remote => true %>
+		<%= link_to "All Banned", all_banned_suggestions_path, class: "nav-link", id: "nav-banned-tab", :remote => true %>
+  </div>
+</nav>
+
+<div id="suggestions_table">
+	<%= render "table", locals: { suggestions: @suggestions, page_title: @page_title } %>
+</div>
+
+<br>
+
+<%= link_to 'New Suggestion', new_suggestion_path %>

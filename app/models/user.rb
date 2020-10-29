@@ -5,9 +5,23 @@ class User < ApplicationRecord
 
   belongs_to :user_type
   belongs_to :supporter_level, optional: true
+	has_many :votes, dependent: :destroy
+	has_many :suggestions
 
-  validates_presence_of :email
-  validates_uniqueness_of :email, case_sensitive: true
+  validates :first_name, :last_name, :email, presence: true
+  validates :email, uniqueness: { case_sensitive: true }
+	validates :supporter_level, presence: true, if: :is_supporter?
+
+	validates :password, presence: true, if: :should_validate_password?
+	validates :password_confirmation, presence: true, if: :should_validate_password_confirmation?
+
+	def should_validate_password?
+    new_record? || password.present?
+  end
+
+	def should_validate_password_confirmation?
+    new_record? || password.present?
+  end
 
   def is_admin?
     self.user_type_id == 1

@@ -1,0 +1,7 @@
+<h2>Editing User</h2>
+
+<%= render partial: "form", locals: {user: @user, url: admin_users_path(@user), button_name: "Update"} %>
+
+<br>
+
+<%= link_to 'Back', :back %>

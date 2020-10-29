@@ -1,0 +1,100 @@
+<br>
+<div class="row">
+	<div class="col-sm-4">
+		<h1>Homepage preview</h1>
+	</div>
+	<div class="col-sm-2">
+		<%= link_to 'Edit', edit_admin_core_path(@core), class: "btn btn-primary btn-lg" %>
+	</div>
+</div>
+<div class="row">
+	<div class="col-sm-12">
+		<p>
+			This is a preview of your homepage as it stands right now... not what you are looking for? Don't worry just hit the edit button above and you can replace all of the content, set all of your links and update the images!
+		</p>
+	</div>
+</div>
+<br>
+
+
+<div class="container">
+	<div class="row" id="banner_background">
+		<div class="container">
+			<%= image_tag @core.banner, class: "img-fluid", id: "banner_image" %>
+		</div>
+	</div>
+	<div class="container">
+		<div>
+			<%= image_tag @core.avatar, class: "img-fluid", id: "avatar_image" %>
+		</div>
+	</div>
+</div>
+<div class="row">
+	<div class="col-sm-12">
+		<br>
+		<h1><%= @core.homepage_title %></h1>
+		<br>
+	</div>
+</div>
+<div class="row">
+	<div class="col-sm-2 subscribe_callout">
+		<%= link_to "Subscribe", sign_up_path, class: "btn btn-lg btn-primary" %>
+	</div>
+	<div class="col-sm-10">
+		<%= simple_format(@core.homepage_content) %>
+	</div>
+</div>
+<div class="row">
+	<div class="col-sm-10">
+		<div class="row supporter_level_home">
+			<div class="col-sm-12">
+				<h3>Current supporter levels:</h3>
+			</div>
+		</div>
+		<% @supporter_levels.each do |supporter_level| %>
+			<div class="row supporter_level_home">
+				<div class="col-sm-1 supporter_ammount">
+					<%= number_to_currency(supporter_level.ammount, :unit => "£") %>
+				</div>
+				<div class="col-sm-11">
+					<h5><%= supporter_level.name %></h5>
+					<%= supporter_level.description %>
+				</div>
+			</div>
+		<% end %>
+	</div>
+	<div class="col-sm-2">
+		<div class="row">
+			<div class="col-sm-12">
+				<h4>Follow us on:</h4>
+			</div>
+			<div class="col-sm-12 social_callout">
+				<% if @core.sm_youtube == true then %>
+					<%= link_to image_tag('/assets/youtube_icon.png') + "YouTube", @core.sm_youtube_link %>
+				<% end %>
+			</div>
+			<div class="col-sm-12 social_callout">
+				<% if @core.sm_twitter == true then %>
+					<%= link_to image_tag('/assets/twitter_icon.png') + "Twitter", @core.sm_twitter_link %>
+				<% end %>
+			</div>
+			<div class="col-sm-12 social_callout">
+				<% if @core.sm_facebook == true then %>
+					<%= link_to image_tag('/assets/facebook_icon.png') + "Facebook", @core.sm_facebook_link %>
+				<% end %>
+			</div>
+			<div class="col-sm-12 social_callout">
+				<% if @core.sm_instagram == true then %>
+					<%= link_to image_tag('/assets/instagram_icon.png') + "Instagram", @core.sm_instagram_link %>
+				<% end %>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="row">
+	<div class="col-sm-12">
+		<h3>About</h3>
+		<br>
+		<%= simple_format(@core.homepage_about) %>
+	</div>
+</div>

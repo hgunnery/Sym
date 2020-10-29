@@ -1,6 +1,9 @@
-<h1>Editing Supporter Level</h1>
+<h2>Editing Supporter Level</h2>
 
 <%= render 'form', supporter_level: @supporter_level %>
 
-<%= link_to 'Show', @supporter_level %> |
-<%= link_to 'Back', supporter_levels_path %>
+<br>
+
+<%= link_to 'Show', admin_supporter_level_path(@supporter_level) %> |
+<%= link_to "Add rewards", rewards_admin_supporter_level_path(@supporter_level) %> |
+<%= link_to 'Back', :back %>

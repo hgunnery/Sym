@@ -4,26 +4,34 @@
     <title>Sym</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
   <body>
+		<%= render 'layouts/navbar' %>
+		<% if current_page?(root_path) then %>
+			<div class="row" id="banner_background">
+				<div class="container">
+					<%= image_tag @content.banner, class: "img-fluid", id: "banner_image" %>
+				</div>
+			</div>
+			<div class="container">
+				<div>
+					<%= image_tag @content.avatar, class: "img-fluid", id: "avatar_image" %>
+				</div>
+			</div>
 
-    <div id="user_nav">
-      <% if current_user %>
-        Welcome Back <%= current_user.full_name %>.
-        <%= link_to "Log out", log_out_path %>
-      <% else %>
-        <%= link_to "Sign up", sign_up_path %> or
-        <%= link_to "log in", log_in_path %>
-      <% end %>
-    </div>
+		<% end %>
+		<div class="container">
 
-    <% flash.each do |name, msg| %>
-      <%= content_tag :div, msg, :id => "flash_#{name}" %>
-    <% end %>
-    <%= yield %>
+			<% flash.each do |name, msg| %>
+	      <%= content_tag :div, msg, :id => "flash_#{name}" %>
+	    <% end %>
+
+	    <%= yield %>
+		</div>
   </body>
 </html>

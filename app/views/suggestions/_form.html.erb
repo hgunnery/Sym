@@ -1,0 +1,55 @@
+<%= form_with(model: suggestion, local: true) do |form| %>
+  <% if suggestion.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(suggestion.errors.count, "error") %> prohibited this suggestion from being saved:</h2>
+
+      <ul>
+        <% suggestion.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+	<div class="row">
+		<div class="col-sm-3">
+			<div class="field form-group">
+		    <%= form.label :name %>
+		    <%= form.text_field :name, class: "form-control" %>
+		  </div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-sm-3">
+			<div class="field form-group">
+		    <%= form.label :description %>
+		    <%= form.text_area :description, class: "form-control" %>
+		  </div>
+		</div>
+	</div>
+	<% if current_user.is_admin? && @suggestion.new_record? == false %>
+	<div class="row">
+		<div class="col-sm-3">
+			<div class="field form-group">
+				<%= form.label :banned %>
+				<%= form.check_box :banned %>
+			</div>
+		</div>
+	</div>
+		<div class="row">
+			<div class="col-sm-3">
+				<div class="field form-group">
+			    <%= form.label :banned_reason %>
+			    <%= form.text_area :banned_reason, class: "form-control" %>
+			  </div>
+			</div>
+		</div>
+	<% end %>
+	<div class="row">
+		<div class="col-sm-3">
+			<div class="actions">
+		    <%= form.submit class: "btn btn-primary" %>
+		  </div>
+		</div>
+	</div>
+<% end %>

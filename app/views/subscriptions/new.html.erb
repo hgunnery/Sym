@@ -1,0 +1,121 @@
+<%= stripe_javascript_tag %>
+<br>
+<h2>Thank you for becoming a <%= @user.supporter_level.name %> level supporter!</h2>
+<div class="row">
+	<div class="col-sm-12">
+		<p>
+			Thanks for registering. Now we just need to sort out your payment details so that we can get your support subscription up and running and give you access to the select goodies inside!
+		</p>
+		<p>
+			Please select from either Stripe or Paypal (coming soon) below and rest assured that we don't store any of your card details and you can cancel your subscription at any time.
+		</p>
+	</div>
+</div>
+<div>
+
+	<%= form_with(model: @subscription, local: true, id: 'subscription-details') do |form| %>
+	  <% if @subscription.errors.any? %>
+	    <div id="error_explanation">
+	      <h2><%= pluralize(@subscription.errors.count, "error") %> prohibited this subscription from being saved:</h2>
+
+	      <ul>
+	        <% @subscription.errors.full_messages.each do |message| %>
+	          <li><%= message %></li>
+	        <% end %>
+	      </ul>
+	    </div>
+	  <% end %>
+		<%= form.hidden_field(:payment_gateway, value: "stripe", id: "subscription-type") %>
+		<%= form.hidden_field(:user_id, value: @user.id, id: "subscription-user") %>
+		<%= form.hidden_field(:supporter_level_id, value: @user.supporter_level.id, id: "subscription-supporter-level") %>
+
+    <h3>Please select your payment Method</h3>
+		<br>
+    <div class="row">
+      <div class="col-sm-2">
+        <%= radio_button_tag 'payment-selection', 'stripe', true, onclick: "changeTab();" %>
+        <span>Stripe</span>
+      </div>
+      <div class="col-sm-2">
+        <%= radio_button_tag 'payment-selection', 'paypal', false, onclick: "changeTab();", disabled: true %>
+        <span>Paypal (Coming Soon)</span>
+      </div>
+    </div>
+    <br>
+    <div class="paymentSelectionTab active" id="tab-stripe">
+      <div id="card-element"></div>
+      <div id="card-errors" role="alert"></div>
+      <br>
+      <%= submit_tag "Subscribe", id: "submit-stripe", class: "btn btn-primary" %>
+    </div>
+    <div class="paymentSelectionTab" id="tab-paypal">
+      <div id="submit-paypal"></div>
+    </div>
+		<br>
+  <% end %>
+</div>
+<script>
+
+  function changeTab() {
+    var newActiveTabID = $('input[name="payment-selection"]:checked').val();
+    $('.paymentSelectionTab').removeClass('active');
+    $('#tab-' + newActiveTabID).addClass('active');
+  }
+
+	(function setupStripe() {
+    //Initialize stripe with publishable key
+    var stripe = Stripe("<%= j Rails.application.credentials.stripe[:publishable_key] %>");
+
+    //Create Stripe credit card elements.
+    var elements = stripe.elements();
+    var card = elements.create('card');
+
+    //Add a listener in order to check if
+    card.addEventListener('change', function(event) {
+      //the div card-errors contains error details if any
+      var displayError = document.getElementById('card-errors');
+      document.getElementById('submit-stripe').disabled = false;
+      if (event.error) {
+        // Display error
+        displayError.textContent = event.error.message;
+      } else {
+        // Clear error
+        displayError.textContent = '';
+      }
+    });
+
+    // Mount Stripe card element in the #card-element div.
+    card.mount('#card-element');
+    var form = document.getElementById('subscription-details');
+    // This will be called when the #submit-stripe button is clicked by the user.
+    form.addEventListener('submit', function(event) {
+      $('#submit-stripe').prop('disabled', true);
+      event.preventDefault();
+      stripe.createToken(card).then(function(result) {
+        if (result.error) {
+          // Inform that there was an error.
+          var errorElement = document.getElementById('card-errors');
+          errorElement.textContent = result.error.message;
+        } else {
+        // Now we submit the form. We also add a hidden input storing
+		    // the token. So our back-end can consume it.
+          var $form = $("#subscription-details");
+          // Add a hidden input orders[token]
+          $form.append($('<input type="hidden" name="subscription[token]"/>').val(result.token.id));
+          // Set order type
+          $('#subscription-type').val('stripe');
+          $form.submit();
+        }
+      });
+      return false;
+    });
+  }());
+
+</script>
+<div class="row">
+	<div class="col-sm-12">
+		<p>
+			Please note that if you leave this page and try and log in you will be returned here. Without setting up payment you will not be able to access any of the exclusive content or rewards!
+		</p>
+	</div>
+</div>

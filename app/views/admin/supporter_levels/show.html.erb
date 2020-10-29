@@ -1,14 +1,31 @@
-<p id="notice"><%= notice %></p>
-
-<p>
-  <strong>Name:</strong>
-  <%= @supporter_level.name %>
-</p>
-
-<p>
-  <strong>Ammount:</strong>
-  <%= @supporter_level.ammount %>
-</p>
-
-<%= link_to 'Edit', edit_supporter_level_path(@supporter_level) %> |
-<%= link_to 'Back', supporter_levels_path %>
+<br>
+<div class="row justify-content-md-center">
+	<div class="col-sm-4 supporter-level-containers">
+		<h3><%= @supporter_level.name %> @ <%= number_to_currency(@supporter_level.ammount, :unit => "£") %></h3>
+		<h4><%= @supporter_level.users.count %></h4>
+		Supporters at this level
+		<br>
+		<%= link_to 'Edit', edit_admin_supporter_level_path(@supporter_level) %> | <%= link_to 'Back', :back %> | <%= link_to "Add rewards", rewards_admin_supporter_level_path(@supporter_level) %>
+	</div>
+</div>
+<br>
+<div class="row">
+	<div class="col-sm-6">
+		<h3>Current <%= @supporter_level.name %> Level Rewards</h3>
+		<p>There are currently <%= @supporter_level.rewards.count %> <%= (@supporter_level.rewards.count) == 1 ? 'reward' : 'rewards'%></p>
+	</div>
+</div>
+<div class="row">
+	<% @supporter_level.rewards.each do |reward| %>
+		<% if reward.content_type == "video/mp4" then %>
+			<div class="col-sm-6 frame">
+				<%= video_tag(url_for(reward), :controls => true, class: "reward-image") %>
+			</div>
+		<% elsif reward.content_type == "image/png" || "image/jpg" then %>
+			<div class="col-sm-6 frame">
+				<span class="helper"></span>
+				<%= image_tag reward, class: "reward-image" %>
+			</div>
+		<% end %>
+	<% end %>
+</div>

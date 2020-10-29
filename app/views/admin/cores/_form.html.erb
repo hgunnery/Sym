@@ -1,0 +1,97 @@
+<%= form_with(model: [:admin, core], local: true) do |form| %>
+  <% if core.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(core.errors.count, "error") %> prohibited this core from being saved:</h2>
+
+      <ul>
+        <% core.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+	<div class="row">
+		<div class="col-sm-3 form-group">
+			<%= form.label :homepage_title, "Your app title" %>
+			<%= form.text_field :homepage_title, class: "form-control" %>
+		</div>
+	</div>
+
+	<div class="row">
+		<div class="col-sm-6 form-group">
+	    <%= form.label :homepage_content, "The initial message that you would like to show" %>
+	    <%= form.text_area :homepage_content, class: "form-control" %>
+	  </div>
+	</div>
+
+	<div class="row">
+		<div class="col-sm-6 form-group">
+	    <%= form.label :homepage_about, "The content that you would like to show in your about section" %>
+	    <%= form.text_area :homepage_about, class: "form-control" %>
+	  </div>
+	</div>
+
+	<div class="row">
+		<div class="col-sm-3">
+			<%= form.label :banner %>
+			<%= form.file_field :banner %>
+		</div>
+		<div class="col-sm-3">
+			<%= form.label :avatar %>
+			<%= form.file_field :avatar %>
+		</div>
+	</div>
+<br>
+	<div class="row">
+		<div class="col-sm-3 form-group">
+	    <%= form.label :sm_youtube_link, "Enter your YouTube link" %>
+	    <%= form.text_field :sm_youtube_link, class: "form-control" %>
+	  </div>
+		<div class="col-sm-3 form-group custom-inline-check">
+	    <%= form.check_box :sm_youtube, class: "form-check-input" %>
+			<%= form.label :sm_youtube, "Would you like to show a YouTube link?" %>
+	  </div>
+	</div>
+
+	<div class="row">
+		<div class="col-sm-3 form-group">
+	    <%= form.label :sm_twitter_link, "Enter your Twitter link" %>
+	    <%= form.text_field :sm_twitter_link, class: "form-control" %>
+	  </div>
+		<div class="col-sm-3 form-group custom-inline-check">
+	    <%= form.check_box :sm_twitter, class: "form-check-input" %>
+			<%= form.label :sm_twitter, "Would you like to show a Twitter link?" %>
+	  </div>
+	</div>
+
+	<div class="row">
+		<div class="col-sm-3 form-group">
+	    <%= form.label :sm_facebook_link, "Enter your Facebook link" %>
+	    <%= form.text_field :sm_facebook_link, class: "form-control" %>
+	  </div>
+		<div class="col-sm-3 form-group custom-inline-check">
+	    <%= form.check_box :sm_facebook, class: "form-check-input" %>
+			<%= form.label :sm_facebook, "Would you like to show a Facebook link?" %>
+	  </div>
+	</div>
+
+	<div class="row">
+		<div class="col-sm-3 form-group">
+	    <%= form.label :sm_instagram_link, "Enter your Instagram link" %>
+	    <%= form.text_field :sm_instagram_link, class: "form-control" %>
+	  </div>
+		<div class="col-sm-3 form-group custom-inline-check">
+	    <%= form.check_box :sm_instagram, class: "form-check-input" %>
+			<%= form.label :sm_instagram, "Would you like to show an Instagram link?" %>
+	  </div>
+	</div>
+
+	<div class="row">
+	  <div class="col-sm-6">
+	    <%= form.submit class: "btn btn-primary" %>
+			<%= link_to 'Show', admin_core_path(@core), class: "btn btn-secondary" %>
+			<%= link_to 'Back', :back, class: "btn btn-link" %>
+	  </div>
+	</div>
+<% end %>
