@@ -1,7 +1,6 @@
 Rails.application.routes.draw do
 
   resources :subscriptions
-	post '/subscriptions/submit', to: 'subscriptions#submit'
   resources :suggestions do
 		resources :votes
   	member do
