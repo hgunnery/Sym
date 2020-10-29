@@ -63,7 +63,7 @@ class SubscriptionsController < ApplicationController
   # DELETE /subscriptions/1.json
   def destroy
 		# dont want to destroy the subscription but set status to canceled and send the cancelation off to stripe/paypal
-		
+
     # @subscription.destroy
     # respond_to do |format|
     #   format.html { redirect_to subscriptions_url, notice: 'Subscription was successfully destroyed.' }
