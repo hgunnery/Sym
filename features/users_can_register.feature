@@ -3,7 +3,8 @@ Feature: Users can register and manage account
   As a supporter
   I want to go register and manage my account
 
-	Scenario: Supporter can Register
+	@javascript
+	Scenario: Supporter can Register and pay with stripe
 		Given I have the supporter pre-requisites
 		When I go to the homepage
 		And I follow "Sign up"
@@ -14,12 +15,15 @@ Feature: Users can register and manage account
 		And I fill in "user_password" with "password"
 		And I fill in "user_password_confirmation" with "password"
 		And I press "Register"
-		Then I should see "Congratulations you are all set!"
+		Then I should see "Congratulations you are all set"
+		When I fill in card details
+		And I press "Subscribe"
+		Then I should see "Subscription was successfully created."
 
 	Scenario: Supporter can log in and edit their details
 		Given I have a supporter and pre-requisites
 		When I go to the homepage
-		And I log in as a support
+		And I log in as a supporter
 		And I follow "Update your details"
 		And I fill in "user_last_name" with "Smithy"
 		And I press "Update"

@@ -32,7 +32,7 @@ Feature: Suggestions can be created and maintained
 		And I have a suggestion created by an Admin
 		When I complete that suggestion
 		And I follow "Log out"
-		And I login as the user
+		And I log in as a supporter
 		And I go to the suggestions page
 		Then I should see the Admin created suggestions name
 

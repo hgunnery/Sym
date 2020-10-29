@@ -1,4 +1,7 @@
 When /^I go to (.*)$/ do |page_name|
+	if page_name == "homepage" || "the homepage" && Core.all.empty? then
+		FactoryBot.create(:core)
+	end
   visit path_to(page_name)
 end
 
