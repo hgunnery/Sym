@@ -7,7 +7,7 @@
 			Thanks for registering. Now we just need to sort out your payment details so that we can get your support subscription up and running and give you access to the select goodies inside!
 		</p>
 		<p>
-			Please select from either Stripe or Paypal below and rest assured that we don't store any of your card details and you can cancel your subscription at any time.
+			Please select from either Stripe or Paypal (coming soon) below and rest assured that we don't store any of your card details and you can cancel your subscription at any time.
 		</p>
 	</div>
 </div>
@@ -37,8 +37,8 @@
         <span>Stripe</span>
       </div>
       <div class="col-sm-2">
-        <%= radio_button_tag 'payment-selection', 'paypal', false, onclick: "changeTab();" %>
-        <span>Paypal</span>
+        <%= radio_button_tag 'payment-selection', 'paypal', false, onclick: "changeTab();", disabled: true %>
+        <span>Paypal (Coming Soon)</span>
       </div>
     </div>
     <br>
@@ -46,7 +46,7 @@
       <div id="card-element"></div>
       <div id="card-errors" role="alert"></div>
       <br>
-      <%= submit_tag "Buy it!", id: "submit-stripe", class: "btn btn-primary" %>
+      <%= submit_tag "Subscribe", id: "submit-stripe", class: "btn btn-primary" %>
     </div>
     <div class="paymentSelectionTab" id="tab-paypal">
       <div id="submit-paypal"></div>

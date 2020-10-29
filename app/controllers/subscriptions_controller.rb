@@ -1,11 +1,6 @@
 class SubscriptionsController < ApplicationController
   before_action :set_subscription, only: [:show, :edit, :update, :destroy]
-
-  # GET /subscriptions
-  # GET /subscriptions.json
-  def index
-    @subscriptions = Subscription.all
-  end
+	before_action :require_login, only: [:show, :edit, :update]
 
   # GET /subscriptions/1
   # GET /subscriptions/1.json
@@ -31,7 +26,7 @@ class SubscriptionsController < ApplicationController
     if subscription_params[:payment_gateway] == "stripe"
       prepare_new_subscription
 			respond_to do |format|
-	      if @subscription.save_with_payment
+	      if @subscription.save_with_stripe_payment
 	        format.html { redirect_to root_path, notice: 'Subscription was successfully created.' }
 	        format.json { render :show, status: :created, location: @subscription }
 	      else
@@ -71,26 +66,6 @@ class SubscriptionsController < ApplicationController
     # end
   end
 
-	def submit
-    @subscription = nil
-		@user = User.find(params[:subscription][:user_id])
-    #Check which type of subscription it is
-    if subscription_params[:payment_gateway] == "stripe"
-      prepare_new_subscription
-			respond_to do |format|
-	      if @subscription.save_with_payment
-	        format.html { redirect_to root_path, notice: 'Subscription was successfully created.' }
-	        format.json { render :show, status: :created, location: @subscription }
-	      else
-	        format.html { render :new }
-	        format.json { render json: @subscription.errors, status: :unprocessable_entity }
-	      end
-	    end
-
-    elsif subscription_params[:payment_gateway] == "paypal"
-      #PAYPAL WILL BE HANDLED HERE
-    end
-  end
 
   private
 
