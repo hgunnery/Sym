@@ -1,58 +1,58 @@
 <div class="row">
-	<div class="col-sm-12">
+	<div class="col-md-12">
 		<br>
 		<h1><%= @content.homepage_title %></h1>
 		<br>
 	</div>
 </div>
 <div class="row">
-	<div class="col-sm-2 subscribe_callout">
+	<div class="col-md-2 subscribe_callout">
 		<%= link_to "Subscribe", sign_up_path, class: "btn btn-lg btn-primary" %>
 	</div>
-	<div class="col-sm-10">
+	<div class="col-md-10">
 		<%= simple_format(@content.homepage_content) %>
 	</div>
 </div>
 <div class="row">
-	<div class="col-sm-10">
+	<div class="col-md-10">
 		<div class="row supporter_level_home">
-			<div class="col-sm-12">
+			<div class="col-md-12">
 				<h3>Current supporter levels:</h3>
 			</div>
 		</div>
 		<% @supporter_levels.each do |supporter_level| %>
 			<div class="row supporter_level_home">
-				<div class="col-sm-1 supporter_amount">
+				<div class="col-md-1 supporter_amount">
 					<%= number_to_currency(supporter_level.amount, :unit => "£") %>
 				</div>
-				<div class="col-sm-11">
+				<div class="col-md-11">
 					<h5><%= supporter_level.name %></h5>
 					<%= supporter_level.description %>
 				</div>
 			</div>
 		<% end %>
 	</div>
-	<div class="col-sm-2">
+	<div class="col-md-2">
 		<div class="row">
-			<div class="col-sm-12">
+			<div class="col-md-12">
 				<h4>Follow us on:</h4>
 			</div>
-			<div class="col-sm-12 social_callout">
+			<div class="col-md-12 social_callout">
 				<% if @content.sm_youtube == true then %>
 					<%= link_to image_tag('/assets/youtube_icon.png') + "YouTube", @content.sm_youtube_link %>
 				<% end %>
 			</div>
-			<div class="col-sm-12 social_callout">
+			<div class="col-md-12 social_callout">
 				<% if @content.sm_twitter == true then %>
 					<%= link_to image_tag('/assets/twitter_icon.png') + "Twitter", @content.sm_twitter_link %>
 				<% end %>
 			</div>
-			<div class="col-sm-12 social_callout">
+			<div class="col-md-12 social_callout">
 				<% if @content.sm_facebook == true then %>
 					<%= link_to image_tag('/assets/facebook_icon.png') + "Facebook", @content.sm_facebook_link %>
 				<% end %>
 			</div>
-			<div class="col-sm-12 social_callout">
+			<div class="col-md-12 social_callout">
 				<% if @content.sm_instagram == true then %>
 					<%= link_to image_tag('/assets/instagram_icon.png') + "Instagram", @content.sm_instagram_link %>
 				<% end %>
@@ -61,7 +61,7 @@
 	</div>
 </div>
 <div class="row">
-	<div class="col-sm-12">
+	<div class="col-md-12">
 		<h3>About</h3>
 		<br>
 		<%= simple_format(@content.homepage_about) %>

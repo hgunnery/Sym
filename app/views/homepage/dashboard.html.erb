@@ -1,3 +1,29 @@
-<h1>Welcome to your Sym Membership app, this is your dashboard</h1>
-
-<%= link_to 'Update your details', edit_account_path(current_user) %>
+<br>
+<h2>Welcome to the members area</h2>
+<br>
+<div class="row">
+	<div class="col-md-12">
+		<h3>Thanks for your support!</h3>
+		<p>All of your available rewards are below, please enjoy. Also if you have a look above you can view all of the supporter only blog posts or make suggestions for future content!</p>
+	</div>
+</div>
+<div class="row">
+	<div class="col-md-6">
+		<h3>Your <%= current_user.supporter_level.name %> Level Rewards</h3>
+		<p>There are currently <%= current_user.supporter_level.rewards.count %> <%= (current_user.supporter_level.rewards.count) == 1 ? 'reward' : 'rewards'%></p>
+	</div>
+</div>
+<div class="row">
+	<% current_user.supporter_level.rewards.each do |reward| %>
+		<% if reward.content_type == "video/mp4" then %>
+			<div class="col-md-6 frame">
+				<%= video_tag(url_for(reward), :controls => true, class: "reward-image") %>
+			</div>
+		<% elsif reward.content_type == "image/png" || "image/jpg" then %>
+			<div class="col-md-6 frame">
+				<span class="helper"></span>
+				<%= image_tag reward, class: "reward-image" %>
+			</div>
+		<% end %>
+	<% end %>
+</div>

@@ -1,9 +1,9 @@
 <br>
 <div class="row">
-	<div class="col-sm-10">
+	<div class="col-md-10">
 		<h2>Here are all your current rewards!</h2>
 	</div>
-	<div class="col-sm-2">
+	<div class="col-md-2">
 		<%= link_to "Add more rewards", new_admin_reward_path %>
 	</div>
 </div>
@@ -13,18 +13,18 @@
 <% @supporter_levels.each do |supporter_level| %>
 	<br>
 	<div class="row">
-		<div class="col-sm-12">
+		<div class="col-md-12">
 			<h3><%= supporter_level.name %></h3>
 		</div>
 	</div>
 	<div class="row">
 		<% supporter_level.rewards.each do |reward| %>
 			<% if reward.content_type == "video/mp4" then %>
-				<div class="col-sm-3 frame">
+				<div class="col-md-3 frame">
 					<%= video_tag(url_for(reward), :controls => true, class: "reward-image") %>
 				</div>
 			<% elsif reward.content_type == "image/png" || "image/jpg" then %>
-				<div class="col-sm-3 frame">
+				<div class="col-md-3 frame">
 					<span class="helper"></span>
 					<%= image_tag reward, class: "reward-image" %>
 				</div>

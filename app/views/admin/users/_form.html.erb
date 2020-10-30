@@ -12,13 +12,13 @@
   <% end %>
 
 	<div class="row">
-		<div class="col-sm-3">
+		<div class="col-md-3">
 			<div class="field form-group">
 		    <%= form.label :first_name %>
 		    <%= form.text_field :first_name, class: "form-control" %>
 		  </div>
 		</div>
-		<div class="col-sm-3">
+		<div class="col-md-3">
 			<div class="field form-group">
 		    <%= form.label :last_name %>
 		    <%= form.text_field :last_name, class: "form-control" %>
@@ -26,7 +26,7 @@
 		</div>
 	</div>
 	<div class="row">
-		<div class="col-sm-3">
+		<div class="col-md-3">
 			<div class="field form-group">
 		    <%= form.label :email %>
 		    <%= form.text_field :email, class: "form-control" %>
@@ -34,7 +34,7 @@
 		</div>
 	</div>
 	<div class="row">
-		<div class="col-sm-3">
+		<div class="col-md-3">
 			<div class="field form-group">
 		    <%= form.label :supporter_level_id, "Supporter Level" %>
 		    <%= form.select :supporter_level_id, SupporterLevel.all.collect {|suppoter_level| [suppoter_level.name, suppoter_level.id]}, {include_blank: true}, {class: "form-control"} %>
@@ -42,13 +42,13 @@
 		</div>
 	</div>
 	<div class="row">
-		<div class="col-sm-3">
+		<div class="col-md-3">
 			<div class="field form-group">
 		    <%= form.label :password %>
 		    <%= form.password_field :password, class: "form-control" %>
 		  </div>
 		</div>
-		<div class="col-sm-3">
+		<div class="col-md-3">
 			<div class="field form-group">
 		    <%= form.label :password_confirmation %>
 		    <%= form.password_field :password_confirmation, class: "form-control" %>
@@ -56,7 +56,7 @@
 		</div>
 	</div>
 	<div class="row">
-		<div class="col-sm-3">
+		<div class="col-md-3">
 			<div class="field form-group">
 		    <%= form.label :user_type_id, "User Type" %>
 		    <%= form.select :user_type_id, UserType.all.collect {|user_type| [user_type.name, user_type.id]}, {}, {class: "form-control"} %>
@@ -64,7 +64,7 @@
 		</div>
 	</div>
 	<div class="row">
-		<div class="col-sm-3">
+		<div class="col-md-3">
 			<div class="field form-group">
 			  <%= form.check_box :allow_marketing %>
 				<%= form.label :allow_marketing %>
@@ -72,7 +72,7 @@
 		</div>
 	</div>
 	<div class="row">
-		<div class="col-sm-3">
+		<div class="col-md-3">
 			<div class="actions">
 		    <%= form.submit button_name, class: "btn btn-primary" %>
 		  </div>

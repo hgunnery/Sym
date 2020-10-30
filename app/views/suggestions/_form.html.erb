@@ -12,7 +12,7 @@
   <% end %>
 
 	<div class="row">
-		<div class="col-sm-3">
+		<div class="col-md-3">
 			<div class="field form-group">
 		    <%= form.label :name %>
 		    <%= form.text_field :name, class: "form-control" %>
@@ -20,7 +20,7 @@
 		</div>
 	</div>
 	<div class="row">
-		<div class="col-sm-3">
+		<div class="col-md-3">
 			<div class="field form-group">
 		    <%= form.label :description %>
 		    <%= form.text_area :description, class: "form-control" %>
@@ -29,7 +29,7 @@
 	</div>
 	<% if current_user.is_admin? && @suggestion.new_record? == false %>
 	<div class="row">
-		<div class="col-sm-3">
+		<div class="col-md-3">
 			<div class="field form-group">
 				<%= form.label :banned %>
 				<%= form.check_box :banned %>
@@ -37,7 +37,7 @@
 		</div>
 	</div>
 		<div class="row">
-			<div class="col-sm-3">
+			<div class="col-md-3">
 				<div class="field form-group">
 			    <%= form.label :banned_reason %>
 			    <%= form.text_area :banned_reason, class: "form-control" %>
@@ -46,7 +46,7 @@
 		</div>
 	<% end %>
 	<div class="row">
-		<div class="col-sm-3">
+		<div class="col-md-3">
 			<div class="actions">
 		    <%= form.submit class: "btn btn-primary" %>
 		  </div>

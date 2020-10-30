@@ -1,14 +1,14 @@
 <br>
 <h2>Supporter Levels</h2>
 <div class="row">
-	<div class="col-sm-12">
+	<div class="col-md-12">
 		Please use these screens to create and edit your supporter levels including setting the base rate for the supporter level. You can then use the rewards screens to bulk upload rewards to multiple supporter levels. If on the other hand you just want to add rewards to one supporter level you can do that below.
 	</div>
 </div>
 
 <div class="row">
 	<% @supporter_levels.each do |supporter_level| %>
-		<div class="col-sm-4 supporter-level-containers">
+		<div class="col-md-4 supporter-level-containers">
 			<h3><%= supporter_level.name %> @ <%= number_to_currency(supporter_level.amount, :unit => "£") %></h3>
 			<h4><%= supporter_level.users.count %></h4>
 			Supporters at this level

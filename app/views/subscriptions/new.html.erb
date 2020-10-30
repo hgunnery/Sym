@@ -2,7 +2,7 @@
 <br>
 <h2>Thank you for becoming a <%= @user.supporter_level.name %> level supporter!</h2>
 <div class="row">
-	<div class="col-sm-12">
+	<div class="col-md-12">
 		<p>
 			Thanks for registering. Now we just need to sort out your payment details so that we can get your support subscription up and running and give you access to the select goodies inside!
 		</p>
@@ -32,11 +32,11 @@
     <h3>Please select your payment Method</h3>
 		<br>
     <div class="row">
-      <div class="col-sm-2">
+      <div class="col-md-2">
         <%= radio_button_tag 'payment-selection', 'stripe', true, onclick: "changeTab();" %>
         <span>Stripe</span>
       </div>
-      <div class="col-sm-2">
+      <div class="col-md-2">
         <%= radio_button_tag 'payment-selection', 'paypal', false, onclick: "changeTab();", disabled: true %>
         <span>Paypal (Coming Soon)</span>
       </div>
@@ -113,7 +113,7 @@
 
 </script>
 <div class="row">
-	<div class="col-sm-12">
+	<div class="col-md-12">
 		<p>
 			Please note that if you leave this page and try and log in you will be returned here. Without setting up payment you will not be able to access any of the exclusive content or rewards!
 		</p>

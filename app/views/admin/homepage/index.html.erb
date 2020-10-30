@@ -4,7 +4,7 @@
 
 <div class="row">
 	<% @supporter_levels.each do |supporter_level| %>
-		<div class="col-sm-4 supporter-level-containers">
+		<div class="col-md-4 supporter-level-containers">
 			<h3><%= supporter_level.name %> @ <%= number_to_currency(supporter_level.amount, :unit => "£") %></h3>
 			<h4><%= supporter_level.users.count %></h4>
 			Supporters at this level

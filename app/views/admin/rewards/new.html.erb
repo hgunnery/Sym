@@ -1,9 +1,9 @@
 <br>
 <div class="row">
-	<div class="col-sm-12">
+	<div class="col-md-12">
 		<h2>Add new rewards</h2>
 	</div>
-	<div class="col-sm-12">
+	<div class="col-md-12">
 		<p>
 			Please add your rewards below. User the uploader to add your files and then select the supporter levels that you would like to be able to access them. Hold Ctrl to select multiple supporter levels!
 		</p>
@@ -15,7 +15,7 @@
 <br>
 <%= form_with(url: admin_rewards_path, scope: :post, local: true) do |form| %>
 <div class="row">
-	<div class="col-sm-6">
+	<div class="col-md-6">
 		<div class="input-group mb-3">
 			<div class="input-group-prepend">
 				<span class="input-group-text" id="inputGroupFileAddon01">Upload Reward</span>
@@ -28,7 +28,7 @@
 	</div>
 </div>
 	<div class="row">
-		<div class="col-sm-3">
+		<div class="col-md-3">
 			<div class="field form-group">
 				<%= form.label :supporter_level_id, "Supporter Level" %>
 		    <%= form.select :supporter_level_id, SupporterLevel.all.collect {|suppoter_level| [suppoter_level.name, suppoter_level.id]}, {}, {class: "form-control", multiple: true} %>
@@ -36,7 +36,7 @@
 		</div>
 	</div>
 	<div class="row">
-		<div class="col-sm-3">
+		<div class="col-md-3">
 			<div class="actions">
 		    <%= form.submit "Add rewards", class: "btn btn-primary" %>
 		  </div>
