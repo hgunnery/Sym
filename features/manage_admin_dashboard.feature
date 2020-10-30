@@ -18,7 +18,7 @@ Feature: Manage Admin Functionality
     When I go to the admin homepage
     And I follow "New Supporter Level"
     And I fill in "supporter_level_name" with "Bronze"
-    And I fill in "supporter_level_ammount" with "5.00"
+    And I fill in "supporter_level_amount" with "5.00"
 		And I fill in "supporter_level_description" with "My awesome supporter level"
     And I press "Create Supporter level"
     Then I should see "Supporter level was successfully created."

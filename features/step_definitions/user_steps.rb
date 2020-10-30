@@ -45,7 +45,7 @@ Given('I have the supporter pre-requisites') do
 		@admin = FactoryBot.create(:admin)
 	end
 	unless SupporterLevel.where(name: "Bronze").nil?
-		SupporterLevel.create(name: "Bronze", ammount: "5.00", description: "My awesome supporter level")
+		SupporterLevel.create(name: "Bronze", amount: "5.00", description: "My awesome supporter level")
 	end
 end
 
@@ -55,7 +55,7 @@ Given('I have a supporter and pre-requisites') do
 		@admin = FactoryBot.create(:admin)
 	end
 	unless SupporterLevel.where(name: "Bronze").nil?
-		@supporter_level = SupporterLevel.create(name: "Bronze", ammount: "5.00", description: "My awesome supporter level")
+		@supporter_level = SupporterLevel.create(name: "Bronze", amount: "5.00", description: "My awesome supporter level")
 	else
 		@supporter_level = SupporterLevel.where(name: "Bronze")
 	end
@@ -87,7 +87,7 @@ Given('I have an admin and a user and the admin is logged in') do
 		@admin = FactoryBot.create(:admin)
 	end
 	unless SupporterLevel.where(name: "Bronze").nil?
-		@supporter_level = SupporterLevel.create(name: "Bronze", ammount: "5.00", description: "My awesome supporter level")
+		@supporter_level = SupporterLevel.create(name: "Bronze", amount: "5.00", description: "My awesome supporter level")
 	else
 		@supporter_level = SupporterLevel.where(name: "Bronze")
 	end
@@ -105,7 +105,7 @@ Given('I have a supporter and they are logged in') do
 		@admin = FactoryBot.create(:admin)
 	end
 	unless SupporterLevel.where(name: "Bronze").nil?
-		@supporter_level = SupporterLevel.create(name: "Bronze", ammount: "5.00", description: "My awesome supporter level")
+		@supporter_level = SupporterLevel.create(name: "Bronze", amount: "5.00", description: "My awesome supporter level")
 	else
 		@supporter_level = SupporterLevel.where(name: "Bronze")
 	end

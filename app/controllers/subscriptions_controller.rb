@@ -74,7 +74,7 @@ class SubscriptionsController < ApplicationController
 			@user = User.find(params[:subscription][:user_id])
 	    @subscription.user_id = @user.id
 	    @supporter_level = SupporterLevel.find(params[:subscription][:supporter_level_id])
-	    @subscription.price = @supporter_level.ammount
+	    @subscription.price = @supporter_level.amount
 	  end
 
     # Use callbacks to share common setup or constraints between actions.

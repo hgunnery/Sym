@@ -17,7 +17,7 @@ class SupporterLevelsControllerTest < ActionDispatch::IntegrationTest
 
   test "should create supporter_level" do
     assert_difference('SupporterLevel.count') do
-      post supporter_levels_url, params: { supporter_level: { ammount: @supporter_level.ammount, name: @supporter_level.name } }
+      post supporter_levels_url, params: { supporter_level: { amount: @supporter_level.amount, name: @supporter_level.name } }
     end
 
     assert_redirected_to supporter_level_url(SupporterLevel.last)
@@ -34,7 +34,7 @@ class SupporterLevelsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should update supporter_level" do
-    patch supporter_level_url(@supporter_level), params: { supporter_level: { ammount: @supporter_level.ammount, name: @supporter_level.name } }
+    patch supporter_level_url(@supporter_level), params: { supporter_level: { amount: @supporter_level.amount, name: @supporter_level.name } }
     assert_redirected_to supporter_level_url(@supporter_level)
   end
 

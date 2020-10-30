@@ -2,7 +2,7 @@ class Admin::RewardsController < ApplicationController
 	before_action :admins_only
 
 	def index
-		@supporter_levels = SupporterLevel.all.order(ammount: :desc)
+		@supporter_levels = SupporterLevel.all.order(amount: :desc)
 	end
 
 	def new

@@ -22,8 +22,8 @@
 		</div>
 		<% @supporter_levels.each do |supporter_level| %>
 			<div class="row supporter_level_home">
-				<div class="col-sm-1 supporter_ammount">
-					<%= number_to_currency(supporter_level.ammount, :unit => "£") %>
+				<div class="col-sm-1 supporter_amount">
+					<%= number_to_currency(supporter_level.amount, :unit => "£") %>
 				</div>
 				<div class="col-sm-11">
 					<h5><%= supporter_level.name %></h5>

@@ -14,7 +14,7 @@ class SupporterLevelsTest < ApplicationSystemTestCase
     visit supporter_levels_url
     click_on "New Supporter Level"
 
-    fill_in "Ammount", with: @supporter_level.ammount
+    fill_in "amount", with: @supporter_level.amount
     fill_in "Name", with: @supporter_level.name
     click_on "Create Supporter level"
 
@@ -26,7 +26,7 @@ class SupporterLevelsTest < ApplicationSystemTestCase
     visit supporter_levels_url
     click_on "Edit", match: :first
 
-    fill_in "Ammount", with: @supporter_level.ammount
+    fill_in "amount", with: @supporter_level.amount
     fill_in "Name", with: @supporter_level.name
     click_on "Update Supporter level"
 

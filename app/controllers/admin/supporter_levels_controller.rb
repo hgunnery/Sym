@@ -77,6 +77,6 @@ class Admin::SupporterLevelsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def supporter_level_params
-      params.require(:supporter_level).permit(:name, :ammount, :description, :stripe_plan_name, :paypal_plan_name)
+      params.require(:supporter_level).permit(:name, :amount, :description, :stripe_plan_name, :paypal_plan_name)
     end
 end

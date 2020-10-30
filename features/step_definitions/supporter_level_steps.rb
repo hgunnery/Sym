@@ -1,7 +1,7 @@
 Given('I have supporter levels called Bronze, Silver and Gold') do
-  SupporterLevel.create(name: "Bronze", ammount: "5.00", description: "My awesome supporter level")
-  SupporterLevel.create(name: "Silver", ammount: "10.00", description: "My awesome supporter level")
-  SupporterLevel.create(name: "Gold", ammount: "15.00", description: "My awesome supporter level")
+  SupporterLevel.create(name: "Bronze", amount: "5.00", description: "My awesome supporter level")
+  SupporterLevel.create(name: "Silver", amount: "10.00", description: "My awesome supporter level")
+  SupporterLevel.create(name: "Gold", amount: "15.00", description: "My awesome supporter level")
 end
 
 When('I fill in card details') do
