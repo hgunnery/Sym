@@ -12,6 +12,12 @@ You will also need to set up your own stripe (and in the future paypal) keys. Th
 
 EDITOR=YOUR_FAVE_EDITOR_HERE rails credentials:edit --environment development
 
+With the expected format being:
+
+stripe:
+  publishable_key: KEY
+  secret_key: KEY
+
 You will also need to setup the test environment the same way if you would like to run the test suite.
 
 All tests on master and dev pass, run the tests via rake cucumber to run all of the features.
