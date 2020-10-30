@@ -30,6 +30,11 @@ class ApplicationController < ActionController::Base
     end
   end
 
-  helper_method :current_user, :require_login, :admins_only
+	def under_construction
+		flash[:error] = "That area is not quite finished yet but will be available in a future release."
+		redirect_to root_path
+	end
+
+  helper_method :current_user, :require_login, :admins_only, :stripe_codes, :paypal_codes, :under_construction
 
 end

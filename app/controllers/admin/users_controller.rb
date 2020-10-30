@@ -1,5 +1,5 @@
 class Admin::UsersController < ApplicationController
-	before_action :admins_only
+	before_action :under_construction
   before_action :set_user, only: [:show, :edit, :update, :destroy]
 
   # GET /users
