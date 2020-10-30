@@ -22,14 +22,14 @@ class AccountsController < ApplicationController
     @user = User.new(user_params)
 
     unless User.all.empty? then
-    	@user.user_type_id = 3
+    	@user.set_supporter
 		else
-			@user.user_type_id = 1
+			@user.set_admin
     end
 
     respond_to do |format|
       if @user.save
-				if @user.user_type_id == 1 then
+				if @user.is_admin? then
 					format.html { redirect_to root_path, notice: 'Congratulations you are all set!' }
 					format.json { render :show, status: :created, location: @user }
 				else

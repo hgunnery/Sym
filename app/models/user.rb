@@ -1,9 +1,10 @@
 class User < ApplicationRecord
+	enum user_type: { admin: 1, supervisor: 2, supporter: 3}
+
   has_secure_password
 
   before_create { generate_token(:auth_token) }
 
-  belongs_to :user_type
   belongs_to :supporter_level, optional: true
 	has_many :votes, dependent: :destroy
 	has_many :suggestions
@@ -23,16 +24,28 @@ class User < ApplicationRecord
     new_record? || password.present?
   end
 
+	def set_admin
+		self.user_type = User.user_types[:admin]
+	end
+
+	def set_supervisor
+		self.user_type = User.user_types[:supervisor]
+	end
+
+	def set_supporter
+		self.user_type = User.user_types[:supporter]
+	end
+
   def is_admin?
-    self.user_type_id == 1
+    self.user_type == "admin"
   end
 
   def is_supervisor?
-    self.user_type_id == 2
+    self.user_type == "supervisor"
   end
 
   def is_supporter?
-    self.user_type_id == 3
+    self.user_type == "supporter"
   end
 
   def full_name

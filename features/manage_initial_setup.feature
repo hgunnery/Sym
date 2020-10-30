@@ -8,7 +8,6 @@ Feature: Manage initial setup
     Then I should see "Welcome to your new App"
 
   Scenario: Register as admin
-    Given I have user types
     When I go to the homepage
     And I fill in "user_first_name" with "John"
     And I fill in "user_last_name" with "Shepard"

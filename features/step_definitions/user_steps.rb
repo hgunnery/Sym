@@ -1,27 +1,9 @@
 Given /^I have an Admin$/ do
-	check_user_types
   @admin = FactoryBot.create(:admin)
 	FactoryBot.create(:core)
 end
 
-def check_user_types
-	unless UserType.all.count == 3 then
-    UserType.create(id: 1, name: "Admin", created_at: DateTime.now, updated_at: DateTime.now)
-    UserType.create(id: 2, name: "Supervisor", created_at: DateTime.now, updated_at: DateTime.now)
-    UserType.create(id: 3, name: "Supporter", created_at: DateTime.now, updated_at: DateTime.now)
-  end
-end
-
-Given /^I have user types$/ do
-  unless UserType.all.count == 3 then
-		UserType.create(id: 1, name: "Admin", created_at: DateTime.now, updated_at: DateTime.now)
-    UserType.create(id: 2, name: "Supervisor", created_at: DateTime.now, updated_at: DateTime.now)
-    UserType.create(id: 3, name: "Supporter", created_at: DateTime.now, updated_at: DateTime.now)
-  end
-end
-
 Given('I have an admin and they are logged in') do
-	check_user_types
   @admin = FactoryBot.create(:admin)
 	FactoryBot.create(:core)
   visit root_path
@@ -40,7 +22,6 @@ end
 
 Given('I have the supporter pre-requisites') do
 	FactoryBot.create(:core)
-	check_user_types
 	if User.first.nil?
 		@admin = FactoryBot.create(:admin)
 	end
@@ -50,7 +31,6 @@ Given('I have the supporter pre-requisites') do
 end
 
 Given('I have a supporter and pre-requisites') do
-	check_user_types
 	if User.first.nil?
 		@admin = FactoryBot.create(:admin)
 	end
@@ -70,7 +50,6 @@ When('I log in as a supporter') do
 end
 
 Given('I have an admin and a user and the user is logged in') do
-	check_user_types
 	if User.first.nil?
 		@admin = FactoryBot.create(:admin)
 	end
@@ -82,7 +61,6 @@ Given('I have an admin and a user and the user is logged in') do
 end
 
 Given('I have an admin and a user and the admin is logged in') do
-	check_user_types
 	if User.first.nil?
 		@admin = FactoryBot.create(:admin)
 	end
@@ -100,7 +78,6 @@ Given('I have an admin and a user and the admin is logged in') do
 end
 
 Given('I have a supporter and they are logged in') do
-	check_user_types
 	if User.first.nil?
 		@admin = FactoryBot.create(:admin)
 	end
