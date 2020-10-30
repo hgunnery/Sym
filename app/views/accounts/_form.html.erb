@@ -32,14 +32,16 @@
 		  </div>
 		</div>
 	</div>
-	<div class="row">
-		<div class="col-md-3">
-			<div class="field form-group">
-		    <%= form.label :supporter_level_id, "Supporter Level" %>
-		    <%= form.select :supporter_level_id, SupporterLevel.all.collect {|suppoter_level| [suppoter_level.name, suppoter_level.id]}, {}, {class: "form-control"} %>
-		  </div>
+	<% unless User.all.empty? then %>
+		<div class="row">
+			<div class="col-md-3">
+				<div class="field form-group">
+			    <%= form.label :supporter_level_id, "Supporter Level" %>
+			    <%= form.select :supporter_level_id, SupporterLevel.all.collect {|suppoter_level| [suppoter_level.name, suppoter_level.id]}, {}, {class: "form-control"} %>
+			  </div>
+			</div>
 		</div>
-	</div>
+	<% end %>
 	<div class="row">
 		<div class="col-md-3">
 			<div class="field form-group">
