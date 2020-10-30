@@ -1,11 +1,12 @@
 class Admin::UsersController < ApplicationController
-	before_action :under_construction
-  before_action :set_user, only: [:show, :edit, :update, :destroy]
+	before_action :admins_only
+  before_action :set_user, only: [:edit, :update, :destroy]
 
   # GET /users
   # GET /users.json
   def index
     @users = User.all
+		@supporter_levels = SupporterLevel.all
   end
 
   # GET /users/1
@@ -29,7 +30,7 @@ class Admin::UsersController < ApplicationController
 
     respond_to do |format|
       if @user.save
-        format.html { redirect_to admin_homepage_path, notice: 'Congratulations you are all set!' }
+        format.html { redirect_to admin_users_path, notice: 'User added' }
         format.json { render :show, status: :created, location: @user }
       else
         format.html { render :new }

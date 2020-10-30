@@ -1,31 +1,50 @@
-<h2>Users</h2>
-
-<table class="table table-bordered table-striped">
-  <thead class="thead-dark">
-    <tr>
-      <th scope="col">First name</th>
-      <th scope="col">Last name</th>
-      <th scope="col">Email</th>
-      <th scope="col">User type</th>
-			<th scope="col">Supporter level</th>
-      <th scope="col"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @users.each do |user| %>
-      <tr>
-        <td><%= user.first_name %></td>
-        <td><%= user.last_name %></td>
-        <td><%= user.email %></td>
-        <td><%= user.user_type.name %></td>
-				<td><%= if user.supporter_level then user.supporter_level.name end %></td>
-        <td><%= link_to 'Edit', edit_admin_user_path(user), class: "btn btn-primary" %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
 <br>
+<h2>All users</h2>
+<br>
+<div class="row">
+	<div class="col-md-12">
+		<p>Please note that all details within here are protected and not to be used for any purpose other than the use intended on sign up. Please do not release any of the information outside of the app.</p>
+	</div>
+	<% @supporter_levels.each do |supporter_level| %>
+		<div class="col-md-4 supporter-level-containers">
+			<h3><%= supporter_level.name %> @ <%= number_to_currency(supporter_level.amount, :unit => "£") %></h3>
+			<h4><%= supporter_level.users.count %></h4>
+			Supporters at this level
+			<br>
+			<%= link_to 'Edit', edit_admin_supporter_level_path(supporter_level) %>
+			<br>
+		</div>
+	<% end %>
+</div>
+<br>
+<div class="row">
+	<div class="col-md-12">
+		<table class="table table-bordered table-striped">
+		  <thead class="thead-dark">
+		    <tr>
+		      <th scope="col">First name</th>
+		      <th scope="col">Last name</th>
+		      <th scope="col">Email</th>
+		      <th scope="col">User type</th>
+					<th scope="col">Supporter level</th>
+		      <th scope="col"></th>
+		    </tr>
+		  </thead>
 
+		  <tbody>
+		    <% @users.each do |user| %>
+		      <tr>
+		        <td><%= user.first_name %></td>
+		        <td><%= user.last_name %></td>
+		        <td><%= user.email.gsub(/.{0,4}@/, '####@') %></td>
+		        <td><%= user.user_type %></td>
+						<td><%= if user.supporter_level then user.supporter_level.name end %></td>
+		        <td><%= link_to 'Edit', edit_admin_user_path(user), class: "btn btn-primary" %></td>
+		      </tr>
+		    <% end %>
+		  </tbody>
+		</table>
+	</div>
+</div>
+<br>
 <%= link_to 'New User', new_admin_user_path %>
