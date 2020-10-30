@@ -36,6 +36,17 @@
 	</div>
 </div>
 <div class="row">
+	<div class="col-md-6">
+		<div class="field form-group">
+	    <%= form.label :stripe_plan_name %>
+	    <%= form.text_field :stripe_plan_name, class: "form-control" %>
+			<small id="stripe_plan_nameHelpBlock" class="form-text text-muted">
+			  This is the unique identifier generated in the stripe dashboard, just copy and past it from there.
+			</small>
+	  </div>
+	</div>
+</div>
+<div class="row">
 	<div class="col-md-3">
 		<div class="actions">
 	    <%= form.submit class: "btn btn-primary" %>
